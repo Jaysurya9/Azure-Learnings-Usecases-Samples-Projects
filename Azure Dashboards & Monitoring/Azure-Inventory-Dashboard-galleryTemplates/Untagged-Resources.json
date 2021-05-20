@@ -1,0 +1,161 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "a36f0b3d-8826-4bec-95a9-70ec6cb77713",
+            "version": "KqlParameterItem/1.0",
+            "name": "Subscriptions",
+            "type": 6,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "value": [
+              "value::all"
+            ],
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::1",
+                "value::all"
+              ],
+              "includeAll": true
+            }
+          }
+        ],
+        "style": "pills",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "parameters - 8"
+    },
+    {
+      "type": 11,
+      "content": {
+        "version": "LinkItem/1.0",
+        "style": "tabs",
+        "links": [
+          {
+            "id": "284d9e1f-d3f9-477e-8fac-0fad54c0b392",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Untagged Resources",
+            "subTarget": "notag",
+            "style": "link"
+          }
+        ]
+      },
+      "name": "links - 6",
+      "styleSettings": {
+        "padding": "0 0 20px 0"
+      }
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "parameters": [
+          {
+            "id": "2ca6744f-0d53-48a0-ad15-95f6dbe5aa9d",
+            "version": "KqlParameterItem/1.0",
+            "name": "ResourceType",
+            "type": 7,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "query": "resources | where tags == ''\r\n| distinct type",
+            "crossComponentResources": [
+              "{Subscriptions}"
+            ],
+            "value": [
+              "value::all"
+            ],
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::1",
+                "value::all"
+              ],
+              "showDefault": false
+            },
+            "timeContext": {
+              "durationMs": 86400000
+            },
+            "queryType": 1,
+            "resourceType": "microsoft.resourcegraph/resources"
+          }
+        ],
+        "style": "pills",
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources"
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "notag"
+      },
+      "name": "parameters - Untagged Resource Type"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources | where tags == ''\r\n| where type in~ ({ResourceType}) or '*' in~ ({ResourceType})\r\n| project Name=id, subscriptionId\r\n",
+        "size": 3,
+        "showExportToExcel": true,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": "Resource",
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Name",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            }
+          ],
+          "rowLimit": 1000,
+          "filter": true,
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "Name"
+          }
+        }
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "notag"
+      },
+      "name": "query - Untagged Resources"
+    }
+  ],
+  "fallbackResourceIds": [
+    "Azure Monitor"
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}

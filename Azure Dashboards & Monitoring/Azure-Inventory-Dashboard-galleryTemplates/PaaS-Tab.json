@@ -1,0 +1,1196 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "a36f0b3d-8826-4bec-95a9-70ec6cb77713",
+            "version": "KqlParameterItem/1.0",
+            "name": "Subscriptions",
+            "type": 6,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "value": [
+              "value::all"
+            ],
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::1",
+                "value::all"
+              ],
+              "includeAll": true
+            }
+          }
+        ],
+        "style": "pills",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "parameters - 8"
+    },
+    {
+      "type": 11,
+      "content": {
+        "version": "LinkItem/1.0",
+        "style": "tabs",
+        "links": [
+          {
+            "id": "ed3b708b-7054-424d-b32b-49451e04d36b",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "PaaS",
+            "subTarget": "paas",
+            "style": "link"
+          }
+        ]
+      },
+      "name": "links - 6",
+      "styleSettings": {
+        "padding": "0 0 20px 0"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## PaaS Resources\r\n\r\n💡 Select tab to view releated resources for PaaS Services\r\n\r\n\r\n"
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "paas"
+      },
+      "name": "text - PaaS Text",
+      "styleSettings": {
+        "padding": "0 0 15px 0"
+      }
+    },
+    {
+      "type": 11,
+      "content": {
+        "version": "LinkItem/1.0",
+        "style": "tabs",
+        "links": [
+          {
+            "id": "a4ee3213-3bfc-4333-b798-934e866c48de",
+            "cellValue": "paas",
+            "linkTarget": "parameter",
+            "linkLabel": "Automation",
+            "subTarget": "automation",
+            "style": "link"
+          },
+          {
+            "id": "c5ba791c-2cc3-4c32-8b5c-eab75cc0354c",
+            "cellValue": "paas",
+            "linkTarget": "parameter",
+            "linkLabel": "App Services",
+            "subTarget": "apps",
+            "style": "link"
+          },
+          {
+            "id": "8d82d272-3094-4750-a058-9122b11ae50b",
+            "cellValue": "paas",
+            "linkTarget": "parameter",
+            "linkLabel": "Events",
+            "subTarget": "events",
+            "style": "link"
+          },
+          {
+            "id": "ed78617d-664d-4727-87c6-91ac79010e2d",
+            "cellValue": "paas",
+            "linkTarget": "parameter",
+            "linkLabel": "Data",
+            "subTarget": "data",
+            "style": "link"
+          },
+          {
+            "id": "a4e4ea2e-4c32-4143-92bd-27473db8bc81",
+            "cellValue": "paas",
+            "linkTarget": "parameter",
+            "linkLabel": "Storage and Backup",
+            "subTarget": "storage",
+            "style": "link"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "paas"
+      },
+      "name": "links - PaaS Tabs",
+      "styleSettings": {
+        "padding": "0 0 15px 0"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Count of all Resource Types\r\n\r\n\r\n\r\n"
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "paas"
+      },
+      "name": "text - PaaS Text - Overview",
+      "styleSettings": {
+        "padding": "0 0 10px 0"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - Begin PaaS - Automation"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow Begin Automation"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources\r\n| where type has 'microsoft.automation'\r\n\tor type has 'microsoft.logic'\r\n\tor type has 'microsoft.web/customapis'\r\n| extend type = case(\r\n\ttype =~ 'microsoft.automation/automationaccounts', 'Automation Accounts',\r\n\ttype == 'microsoft.web/serverfarms', \"App Service Plans\",\r\n\tkind == 'functionapp', \"Azure Functions\", \r\n\tkind == \"api\", \"API Apps\", \r\n\ttype == 'microsoft.web/sites', \"App Services\",\r\n\ttype =~ 'microsoft.web/connections', 'LogicApp Connectors',\r\n\ttype =~ 'microsoft.web/customapis','LogicApp API Connectors',\r\n\ttype =~ 'microsoft.logic/workflows','LogicApps',\r\n\ttype =~ 'microsoft.automation/automationaccounts/runbooks', 'Automation Runbooks',\r\n    type =~ 'microsoft.automation/automationaccounts/configurations', 'Automation Configurations',\r\nstrcat(\"Not Translated: \", type))\r\n| summarize count() by type\r\n| where type !has \"Not Translated\"",
+        "size": 1,
+        "noDataMessage": "No resources found",
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "visualization": "tiles",
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          },
+          "showBorder": true,
+          "sortCriteriaField": "type",
+          "sortOrderField": 1
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "automation"
+        }
+      ],
+      "name": "query - PaaS - Automation Overview"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Detailed View\r\n\r\n💡 select 'View Details' to see full return from Azure Resource Graph"
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "automation"
+        }
+      ],
+      "name": "text - PaaS Text - Automation - Details "
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources\r\n| where type has 'microsoft.automation'\r\n\t or type has 'microsoft.logic'\r\n\t or type has 'microsoft.web/customapis'\r\n| extend type = case(\r\n\ttype =~ 'microsoft.automation/automationaccounts', 'Automation Accounts',\r\n\ttype =~ 'microsoft.web/connections', 'LogicApp Connectors',\r\n\ttype =~ 'microsoft.web/customapis','LogicApp API Connectors',\r\n\ttype =~ 'microsoft.logic/workflows','LogicApps',\r\n\ttype =~ 'microsoft.automation/automationaccounts/runbooks', 'Automation Runbooks',\r\n\ttype =~ 'microsoft.automation/automationaccounts/configurations', 'Automation Configurations',\r\n\tstrcat(\"Not Translated: \", type))\r\n| extend RunbookType = tostring(properties.runbookType)\r\n| extend LogicAppTrigger = properties.definition.triggers\r\n| extend LogicAppTrigger = iif(type =~ 'LogicApps', case(\r\n\tLogicAppTrigger has 'manual', tostring(LogicAppTrigger.manual.type),\r\n\tLogicAppTrigger has 'Recurrence', tostring(LogicAppTrigger.Recurrence.type),\r\n\tstrcat(\"Unknown Trigger type\", LogicAppTrigger)), LogicAppTrigger)\r\n| extend State = case(\r\n\ttype =~ 'Automation Runbooks', properties.state, \r\n\ttype =~ 'LogicApps', properties.state,\r\n\ttype =~ 'Automation Accounts', properties.state,\r\n\ttype =~ 'Automation Configurations', properties.state,\r\n\t' ')\r\n| extend CreatedDate = case(\r\n\ttype =~ 'Automation Runbooks', properties.creationTime, \r\n\ttype =~ 'LogicApps', properties.createdTime,\r\n\ttype =~ 'Automation Accounts', properties.creationTime,\r\n\ttype =~ 'Automation Configurations', properties.creationTime,\r\n\t' ')\r\n| extend LastModified = case(\r\n\ttype =~ 'Automation Runbooks', properties.lastModifiedTime, \r\n\ttype =~ 'LogicApps', properties.changedTime,\r\n\ttype =~ 'Automation Accounts', properties.lastModifiedTime,\r\n\ttype =~ 'Automation Configurations', properties.lastModifiedTime,\r\n\t' ')\r\n| extend Details = pack_all()\r\n| project Resource=id, subscriptionId, type, resourceGroup, RunbookType, LogicAppTrigger, State, Details",
+        "size": 2,
+        "noDataMessage": "No resources found",
+        "showExportToExcel": true,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": "Resource",
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Resource",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "Details",
+              "formatter": 7,
+              "formatOptions": {
+                "linkTarget": "CellDetails",
+                "linkLabel": "🔍 View Details",
+                "linkIsContextBlade": true
+              }
+            }
+          ],
+          "rowLimit": 1000,
+          "filter": true,
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "Resource"
+          }
+        },
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          },
+          "showBorder": true,
+          "sortCriteriaField": "type",
+          "sortOrderField": 1
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "automation"
+        }
+      ],
+      "name": "query - PaaS - Automation Detailed",
+      "styleSettings": {
+        "padding": "0 0 200px 0"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - End PaaS - Automation"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow End - PaaS - Automation"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - Begin PaaS - Apps"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow Begin Automation"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources\r\n| where type has 'microsoft.web'\r\n\t or type =~ 'microsoft.apimanagement/service'\r\n\t or type =~ 'microsoft.network/frontdoors'\r\n\t or type =~ 'microsoft.network/applicationgateways'\r\n\t or type =~ 'microsoft.appconfiguration/configurationstores'\r\n| extend type = case(\r\n\ttype == 'microsoft.web/serverfarms', \"App Service Plans\",\r\n\tkind == 'functionapp', \"Azure Functions\", \r\n\tkind == \"api\", \"API Apps\", \r\n\ttype == 'microsoft.web/sites', \"App Services\",\r\n\ttype =~ 'microsoft.network/applicationgateways', 'App Gateways',\r\n\ttype =~ 'microsoft.network/frontdoors', 'Front Door',\r\n\ttype =~ 'microsoft.apimanagement/service', 'API Management',\r\n\ttype =~ 'microsoft.web/certificates', 'App Certificates',\r\n\ttype =~ 'microsoft.appconfiguration/configurationstores', 'App Config Stores',\r\n\tstrcat(\"Not Translated: \", type))\r\n| where type !has \"Not Translated\"\r\n| summarize count() by type",
+        "size": 1,
+        "noDataMessage": "No resources found",
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "visualization": "tiles",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": null,
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Resource",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            }
+          ],
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "Resource"
+          }
+        },
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          },
+          "showBorder": true,
+          "sortCriteriaField": "type",
+          "sortOrderField": 1
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "apps"
+        }
+      ],
+      "name": "query - PaaS - Apps Overview"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Detailed View\r\n\r\n💡 select 'View Details' to see full return from Azure Resource Graph"
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "apps"
+        }
+      ],
+      "name": "text - PaaS Text - App Services Details"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources\r\n| where type has 'microsoft.web'\r\n\t or type =~ 'microsoft.apimanagement/service'\r\n\t or type =~ 'microsoft.network/frontdoors'\r\n\t or type =~ 'microsoft.network/applicationgateways'\r\n\t or type =~ 'microsoft.appconfiguration/configurationstores'\r\n| extend type = case(\r\n\ttype == 'microsoft.web/serverfarms', \"App Service Plans\",\r\n\tkind == 'functionapp', \"Azure Functions\", \r\n\tkind == \"api\", \"API Apps\", \r\n\ttype == 'microsoft.web/sites', \"App Services\",\r\n\ttype =~ 'microsoft.network/applicationgateways', 'App Gateways',\r\n\ttype =~ 'microsoft.network/frontdoors', 'Front Door',\r\n\ttype =~ 'microsoft.apimanagement/service', 'API Management',\r\n\ttype =~ 'microsoft.web/certificates', 'App Certificates',\r\n\ttype =~ 'microsoft.appconfiguration/configurationstores', 'App Config Stores',\r\n\tstrcat(\"Not Translated: \", type))\r\n| where type !has \"Not Translated\"\r\n| extend Sku = case(\r\n\ttype =~ 'App Gateways', properties.sku.name, \r\n\ttype =~ 'Azure Functions', properties.sku,\r\n\ttype =~ 'API Management', sku.name,\r\n\ttype =~ 'App Service Plans', sku.name,\r\n\ttype =~ 'App Services', properties.sku,\r\n\ttype =~ 'App Config Stores', sku.name,\r\n\t' ')\r\n| extend State = case(\r\n\ttype =~ 'App Config Stores', properties.provisioningState,\r\n\ttype =~ 'App Service Plans', properties.status,\r\n\ttype =~ 'Azure Functions', properties.enabled,\r\n\ttype =~ 'App Services', properties.state,\r\n\ttype =~ 'API Management', properties.provisioningState,\r\n\ttype =~ 'App Gateways', properties.provisioningState,\r\n\ttype =~ 'Front Door', properties.provisioningState,\r\n\t' ')\r\n| mv-expand publicIpId=properties.frontendIPConfigurations\r\n| mv-expand publicIpId = publicIpId.properties.publicIPAddress.id\r\n| extend publicIpId = tostring(publicIpId)\r\n\t| join kind=leftouter(\r\n\t  \tResources\r\n  \t\t| where type =~ 'microsoft.network/publicipaddresses'\r\n  \t\t| project publicIpId = id, publicIpAddress = tostring(properties.ipAddress)) on publicIpId\r\n| extend PublicIP = case(\r\n\ttype =~ 'API Management', properties.publicIPAddresses,\r\n\ttype =~ 'App Gateways', publicIpAddress,\r\n\t' ')\r\n| extend Details = pack_all()\r\n| project Resource=id, type, subscriptionId, Sku, State, PublicIP, Details",
+        "size": 2,
+        "noDataMessage": "No resources found",
+        "showExportToExcel": true,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": "Resource",
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Resource",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "Details",
+              "formatter": 7,
+              "formatOptions": {
+                "linkTarget": "CellDetails",
+                "linkLabel": "🔍 View Details",
+                "linkIsContextBlade": true
+              }
+            }
+          ],
+          "rowLimit": 1000,
+          "filter": true,
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "Resource"
+          }
+        },
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          },
+          "showBorder": true,
+          "sortCriteriaField": "type",
+          "sortOrderField": 1
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "apps"
+        }
+      ],
+      "name": "query - PaaS - Apps Detailed",
+      "styleSettings": {
+        "padding": "0 0 200px 0"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - End PaaS - Apps"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow End PaaS - Apps"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - Begin PaaS - Events"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow Begin PaaS - Events"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources\r\n| where type has 'microsoft.servicebus'\r\n\tor type has 'microsoft.eventhub'\r\n\tor type has 'microsoft.eventgrid'\r\n\tor type has 'microsoft.relay'\r\n| extend type = case(\r\n\ttype == 'microsoft.eventgrid/systemtopics', \"EventGrid System Topics\",\r\n\ttype =~ \"microsoft.eventgrid/topics\", \"EventGrid Topics\",\r\n\ttype =~ 'microsoft.eventhub/namespaces', \"EventHub Namespaces\",\r\n\ttype =~ 'microsoft.servicebus/namespaces', 'ServiceBus Namespaces',\r\n\ttype =~ 'microsoft.relay/namespaces', 'Relays',\r\n\tstrcat(\"Not Translated: \", type))\r\n| where type !has \"Not Translated\"\r\n| summarize count() by type",
+        "size": 1,
+        "noDataMessage": "No resources found",
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "visualization": "tiles",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": null,
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Resource",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            }
+          ],
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "Resource"
+          }
+        },
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          },
+          "showBorder": true,
+          "sortCriteriaField": "type",
+          "sortOrderField": 1
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "events"
+        }
+      ],
+      "name": "query - PaaS - Events Overview"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Detailed View\r\n\r\n💡 select 'View Details' to see full return from Azure Resource Graph"
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "events"
+        }
+      ],
+      "name": "text - PaaS Text - Events - Details"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources\r\n| where type has 'microsoft.servicebus'\r\n\tor type has 'microsoft.eventhub'\r\n\tor type has 'microsoft.eventgrid'\r\n\tor type has 'microsoft.relay'\r\n| extend type = case(\r\n\ttype == 'microsoft.eventgrid/systemtopics', \"EventGrid System Topics\",\r\n\ttype =~ \"microsoft.eventgrid/topics\", \"EventGrid Topics\",\r\n\ttype =~ 'microsoft.eventhub/namespaces', \"EventHub Namespaces\",\r\n\ttype =~ 'microsoft.servicebus/namespaces', 'ServiceBus Namespaces',\r\n\ttype =~ 'microsoft.relay/namespaces', 'Relays',\r\n\tstrcat(\"Not Translated: \", type))\r\n| extend Sku = case(\r\n\ttype =~ 'Relays', sku.name, \r\n\ttype =~ 'EventGrid System Topics', properties.sku,\r\n\ttype =~ 'EventGrid Topics', sku.name,\r\n\ttype =~ 'EventHub Namespaces', sku.name,\r\n\ttype =~ 'ServiceBus Namespaces', sku.sku,\r\n\t' ')\r\n| extend Endpoint = case(\r\n\ttype =~ 'Relays', properties.serviceBusEndpoint,\r\n\ttype =~ 'EventGrid Topics', properties.endpoint,\r\n\ttype =~ 'EventHub Namespaces', properties.serviceBusEndpoint,\r\n\ttype =~ 'ServiceBus Namespaces', properties.serviceBusEndpoint,\r\n\t' ')\r\n| extend Status = case(\r\n\ttype =~ 'Relays', properties.provisioningState,\r\n\ttype =~ 'EventGrid System Topics', properties.provisioningState,\r\n\ttype =~ 'EventGrid Topics', properties.publicNetworkAccess,\r\n\ttype =~ 'EventHub Namespaces', properties.status,\r\n\ttype =~ 'ServiceBus Namespaces', properties.status,\r\n\t' ')\r\n| extend Details = pack_all()\r\n| project Resource=id, subscriptionId, resourceGroup, Sku, Status, Endpoint, Details",
+        "size": 2,
+        "noDataMessage": "No resources found",
+        "showExportToExcel": true,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": "Resource",
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Resource",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "Details",
+              "formatter": 7,
+              "formatOptions": {
+                "linkTarget": "CellDetails",
+                "linkLabel": "🔍 View Details",
+                "linkIsContextBlade": true
+              }
+            }
+          ],
+          "rowLimit": 1000,
+          "filter": true,
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "Resource"
+          }
+        },
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          },
+          "showBorder": true,
+          "sortCriteriaField": "type",
+          "sortOrderField": 1
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "events"
+        }
+      ],
+      "name": "query - PaaS - Events Detailed",
+      "styleSettings": {
+        "padding": "0 0 200px 0"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - End PaaS - Events"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow End PaaS - Events"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - Begin PaaS - Data"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow Begin PaaS - Data"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources \r\n| where type =~ 'microsoft.documentdb/databaseaccounts'\r\n\tor type =~ 'microsoft.sql/servers/databases'\r\n\tor type =~ 'microsoft.dbformysql/servers'\r\n\tor type =~ 'microsoft.sql/servers'\r\n| extend type = case(\r\n\ttype =~ 'microsoft.documentdb/databaseaccounts', 'CosmosDB',\r\n\ttype =~ 'microsoft.sql/servers/databases', 'SQL DBs',\r\n\ttype =~ 'microsoft.dbformysql/servers', 'MySQL',\r\n\ttype =~ 'microsoft.sql/servers', 'SQL Servers',\r\n\tstrcat(\"Not Translated: \", type))\r\n| where type !has \"Not Translated\"\r\n| summarize count() by type",
+        "size": 1,
+        "noDataMessage": "No resources found",
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "visualization": "tiles",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": null,
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Resource",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            }
+          ],
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "Resource"
+          }
+        },
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          },
+          "showBorder": true,
+          "sortCriteriaField": "type",
+          "sortOrderField": 1
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "data"
+        }
+      ],
+      "name": "query - PaaS - Data Overview"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Detailed View\r\n\r\n💡 select 'View Details' to see full return from Azure Resource Graph"
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "data"
+        }
+      ],
+      "name": "text - PaaS Text - Data - Details"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "// data\r\n// Click the \"Run query\" command above to execute the query and see results.\r\nresources \r\n| where type =~ 'microsoft.documentdb/databaseaccounts'\r\n\tor type =~ 'microsoft.sql/servers/databases'\r\n\tor type =~ 'microsoft.dbformysql/servers'\r\n\tor type =~ 'microsoft.sql/servers'\r\n| extend type = case(\r\n\ttype =~ 'microsoft.documentdb/databaseaccounts', 'CosmosDB',\r\n\ttype =~ 'microsoft.sql/servers/databases', 'SQL DBs',\r\n\ttype =~ 'microsoft.dbformysql/servers', 'MySQL',\r\n\ttype =~ 'microsoft.sql/servers', 'SQL Servers',\r\n\tstrcat(\"Not Translated: \", type))\r\n| extend Sku = case(\r\n\ttype =~ 'CosmosDB', properties.databaseAccountOfferType,\r\n\ttype =~ 'SQL DBs', sku.name,\r\n\ttype =~ 'MySQL', sku.name,\r\n\t' ')\r\n| extend Status = case(\r\n\ttype =~ 'CosmosDB', properties.provisioningState,\r\n\ttype =~ 'SQL DBs', properties.status,\r\n\ttype =~ 'MySQL', properties.userVisibleState,\r\n\t' ')\r\n| extend Endpoint = case(\r\n\ttype =~ 'MySQL', properties.fullyQualifiedDomainName,\r\n\ttype =~ 'SQL Servers', properties.fullyQualifiedDomainName,\r\n\ttype =~ 'CosmosDB', properties.documentEndpoint,\r\n\t' ')\r\n| extend maxSizeGB = todouble(case(\r\n\ttype =~ 'SQL DBs', properties.maxSizeBytes,\r\n\ttype =~ 'MySQL', properties.storageProfile.storageMB,\r\n\t' '))\r\n| extend maxSizeGB = iif(type has 'SQL DBs', maxSizeGB /1000 /1000, maxSizeGB)\r\n| extend Details = pack_all()\r\n| project Resource=id, resourceGroup, subscriptionId, type, Sku, Status, Endpoint, maxSizeGB, Details\r\n\r\n",
+        "size": 2,
+        "noDataMessage": "No resources found",
+        "showExportToExcel": true,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": "Resource",
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Resource",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "maxSizeGB",
+              "formatter": 0,
+              "numberFormat": {
+                "unit": 4,
+                "options": {
+                  "style": "decimal",
+                  "useGrouping": false
+                }
+              }
+            },
+            {
+              "columnMatch": "Details",
+              "formatter": 7,
+              "formatOptions": {
+                "linkTarget": "CellDetails",
+                "linkLabel": "🔍 View Details",
+                "linkIsContextBlade": true
+              }
+            }
+          ],
+          "rowLimit": 1000,
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "Resource"
+          }
+        },
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          },
+          "showBorder": true,
+          "sortCriteriaField": "type",
+          "sortOrderField": 1
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "data"
+        }
+      ],
+      "name": "query - PaaS - Data Detailed",
+      "styleSettings": {
+        "padding": "0 0 200px 0"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - End PaaS - Data"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow End PaaS - Data"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - Begin PaaS - Storage"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow Begin PaaS - Storage"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources \r\n| where type =~ 'microsoft.storagesync/storagesyncservices'\r\n\tor type =~ 'microsoft.recoveryservices/vaults'\r\n\tor type =~ 'microsoft.storage/storageaccounts'\r\n\tor type =~ 'microsoft.keyvault/vaults'\r\n| extend type = case(\r\n\ttype =~ 'microsoft.storagesync/storagesyncservices', 'Azure File Sync',\r\n\ttype =~ 'microsoft.recoveryservices/vaults', 'Azure Backup',\r\n\ttype =~ 'microsoft.storage/storageaccounts', 'Storage Accounts',\r\n\ttype =~ 'microsoft.keyvault/vaults', 'Key Vaults',\r\n\tstrcat(\"Not Translated: \", type))\r\n| where type !has \"Not Translated\"\r\n| summarize count() by type",
+        "size": 1,
+        "noDataMessage": "No resources found",
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "visualization": "tiles",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": null,
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Resource",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            }
+          ],
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "Resource"
+          }
+        },
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          },
+          "showBorder": true,
+          "sortCriteriaField": "type",
+          "sortOrderField": 1
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "storage"
+        }
+      ],
+      "name": "query - PaaS - Data Overview "
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Detailed View\r\n\r\n💡 select 'View Details' to see full return from Azure Resource Graph"
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "storage"
+        }
+      ],
+      "name": "text - PaaS Text - Storage - Details"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources \r\n| where type =~ 'microsoft.storagesync/storagesyncservices'\r\n\tor type =~ 'microsoft.recoveryservices/vaults'\r\n\tor type =~ 'microsoft.storage/storageaccounts'\r\n\tor type =~ 'microsoft.keyvault/vaults'\r\n| extend type = case(\r\n\ttype =~ 'microsoft.storagesync/storagesyncservices', 'Azure File Sync',\r\n\ttype =~ 'microsoft.recoveryservices/vaults', 'Azure Backup',\r\n\ttype =~ 'microsoft.storage/storageaccounts', 'Storage Accounts',\r\n\ttype =~ 'microsoft.keyvault/vaults', 'Key Vaults',\r\n\tstrcat(\"Not Translated: \", type))\r\n| extend Sku = case(\r\n\ttype !has 'Key Vaults', sku.name,\r\n\ttype =~ 'Key Vaults', properties.sku.name,\r\n\t' ')\r\n| extend Details = pack_all()\r\n| project Resource=id, type, kind, subscriptionId, resourceGroup, Sku, Details",
+        "size": 2,
+        "noDataMessage": "No resources found",
+        "showExportToExcel": true,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": "Resource",
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Resource",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "Details",
+              "formatter": 7,
+              "formatOptions": {
+                "linkTarget": "CellDetails",
+                "linkLabel": "🔍 View Details",
+                "linkIsContextBlade": true
+              }
+            }
+          ],
+          "rowLimit": 1000,
+          "filter": true,
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "Resource"
+          }
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "paas"
+        },
+        {
+          "parameterName": "paas",
+          "comparison": "isEqualTo",
+          "value": "storage"
+        }
+      ],
+      "name": "query - PaaS - Data Detailed",
+      "styleSettings": {
+        "padding": "0 0 200px 0"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - End PaaS - Storage"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow End PaaS - Storage - Copy"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## End PaaS\r\n\r\n\r\n## Begin Networking"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow Monitoring Security"
+    }
+  ],
+  "fallbackResourceIds": [
+    "Azure Monitor"
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}

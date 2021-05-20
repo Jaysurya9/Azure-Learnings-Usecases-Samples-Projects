@@ -1,0 +1,295 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "a36f0b3d-8826-4bec-95a9-70ec6cb77713",
+            "version": "KqlParameterItem/1.0",
+            "name": "Subscriptions",
+            "type": 6,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "value": [
+              "value::all"
+            ],
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::1",
+                "value::all"
+              ],
+              "includeAll": true
+            }
+          }
+        ],
+        "style": "pills",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "parameters - 8"
+    },
+    {
+      "type": 11,
+      "content": {
+        "version": "LinkItem/1.0",
+        "style": "tabs",
+        "links": [
+          {
+            "id": "1c2b6655-5c72-47bf-b4c6-9ea2665c07ef",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Tagged Resources",
+            "subTarget": "tags",
+            "style": "link"
+          }
+        ]
+      },
+      "name": "links - 6",
+      "styleSettings": {
+        "padding": "0 0 20px 0"
+      }
+    },
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "parameters": [
+          {
+            "id": "f89867f4-907a-49cd-add8-bded49c43bed",
+            "version": "KqlParameterItem/1.0",
+            "name": "Environment",
+            "type": 5,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "query": "resources   \r\n| where tags.Environment != ''   \r\n| distinct tostring(tags.Environment)",
+            "crossComponentResources": [
+              "{Subscriptions}"
+            ],
+            "value": [
+              "value::all"
+            ],
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::1",
+                "value::all"
+              ],
+              "showDefault": false
+            },
+            "timeContext": {
+              "durationMs": 86400000
+            },
+            "queryType": 1,
+            "resourceType": "microsoft.resourcegraph/resources"
+          },
+          {
+            "id": "ef32b148-7ea7-4af4-aaf7-b6a87f2d00d7",
+            "version": "KqlParameterItem/1.0",
+            "name": "Application",
+            "type": 5,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "query": "resources \r\n| where tags.Environment in~ ({Environment}) or '*' in~ ({Environment})\r\n| where tags.Application != ''   \r\n| distinct tostring(tags.Application)  ",
+            "crossComponentResources": [
+              "{Subscriptions}"
+            ],
+            "value": [
+              "value::1"
+            ],
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::1",
+                "value::all"
+              ],
+              "showDefault": false
+            },
+            "timeContext": {
+              "durationMs": 86400000
+            },
+            "queryType": 1,
+            "resourceType": "microsoft.resourcegraph/resources"
+          }
+        ],
+        "style": "pills",
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources"
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "tags"
+      },
+      "name": "parameters - Tagged Resources"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Showing Resources for {Environment} and Application(s) {Application}"
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "tags"
+      },
+      "name": "text - Show Text for Tagged Selections"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources\r\n| where type != 'microsoft.network/networkinterfaces'\r\n| where type != 'microsoft.compute/disks'\r\n| where tags.Environment in~ ({Environment}) or '*' in~ ({Environment})\r\n| where tags.Application in~ ({Application}) or '*' in~ ({Application})\r\n| extend type = case(\r\ntype =~ 'microsoft.network/networksecuritygroups', \"NSGs\", \r\ntype =~ \"microsoft.network/publicipaddresses\", \"Public IPs\", \r\ntype =~ 'microsoft.network/virtualnetworks', \"vNets\",\r\ntype =~ 'microsoft.network/networkwatchers/connectionmonitors', \"Connection Monitors\",\r\ntype =~ 'microsoft.network/privatednszones', \"Private DNS\",\r\ntype =~ 'microsoft.network/virtualnetworkgateways', \"vNet Gateways\",\r\ntype =~ 'microsoft.network/connections', \"Connections\",\r\ntype =~ 'microsoft.network/networkwatchers', \"Network Watchers\",\r\ntype =~ 'microsoft.network/privateendpoints', \"Private Endpoints\",\r\ntype =~ 'microsoft.network/localnetworkgateways', \"Local Network Gateways\",\r\ntype =~ 'microsoft.network/privatednszones/virtualnetworklinks', \"vNet Links\",\r\ntype =~ 'microsoft.web/serverfarms', \"App Service Plans\",\r\nkind == 'functionapp', \"Azure Functions\", \r\nkind == \"api\", \"API Apps\", \r\ntype =~ 'microsoft.web/sites', \"App Services\",\r\ntype =~ \"microsoft.compute/virtualmachines\", \"Azure Compute\",\r\ntype =~ \"microsoft.logic/workflows\", \"LogicApps\",\r\ntype =~ 'microsoft.keyvault/vaults', \"Key Vaults\",\r\ntype =~ 'microsoft.keyvault/vaults', \"Hybrid Compute\",\r\ntype =~ 'microsoft.storage/storageaccounts', \"Storage Accounts\",\r\ntype =~ 'microsoft.compute/availabilitysets', 'Availability Sets',\r\ntype =~ 'microsoft.insights/components','Application Insights',\r\ntype =~ 'microsoft.desktopvirtualization/applicationgroups', 'WVD Application Groups',\r\ntype =~ 'microsoft.desktopvirtualization/workspaces', 'WVD Workspaces',\r\ntype =~ 'microsoft.desktopvirtualization/hostpools', 'WVD Hostpools',\r\nstrcat(\"Not Translated: \", type))\r\n| summarize count() by type\r\n\r\n\r\n",
+        "size": 0,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "visualization": "tiles",
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          },
+          "showBorder": true
+        }
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "tags"
+      },
+      "name": "query - Tagged Resources"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources\r\n| where type != 'microsoft.network/networkinterfaces'\r\n| where type != 'microsoft.compute/disks'\r\n| where tags.Environment in~ ({Environment}) or '*' in~ ({Environment})\r\n| where tags.Application in~ ({Application}) or '*' in~ ({Application})\r\n| extend type = case(\r\ntype =~ 'microsoft.network/networksecuritygroups', \"NSGs\", \r\ntype =~ \"microsoft.network/publicipaddresses\", \"Public IPs\", \r\ntype =~ 'microsoft.network/virtualnetworks', \"vNets\",\r\ntype =~ 'microsoft.network/networkwatchers/connectionmonitors', \"Connection Monitors\",\r\ntype =~ 'microsoft.network/privatednszones', \"Private DNS\",\r\ntype =~ 'microsoft.network/virtualnetworkgateways', \"vNet Gateways\",\r\ntype =~ 'microsoft.network/connections', \"Connections\",\r\ntype =~ 'microsoft.network/networkwatchers', \"Network Watchers\",\r\ntype =~ 'microsoft.network/privateendpoints', \"Private Endpoints\",\r\ntype =~ 'microsoft.network/localnetworkgateways', \"Local Network Gateways\",\r\ntype =~ 'microsoft.network/privatednszones/virtualnetworklinks', \"vNet Links\",\r\ntype =~ 'microsoft.web/serverfarms', \"App Service Plans\",\r\nkind == 'functionapp', \"Azure Functions\", \r\nkind == \"api\", \"API Apps\", \r\ntype =~ 'microsoft.web/sites', \"App Services\",\r\ntype =~ \"microsoft.compute/virtualmachines\", \"Azure Compute\",\r\ntype =~ \"microsoft.logic/workflows\", \"LogicApps\",\r\ntype =~ 'microsoft.keyvault/vaults', \"Key Vaults\",\r\ntype =~ 'microsoft.keyvault/vaults', \"Hybrid Compute\",\r\ntype =~ 'microsoft.storage/storageaccounts', \"Storage Accounts\",\r\ntype =~ 'microsoft.compute/availabilitysets', 'Availability Sets',\r\ntype =~ 'microsoft.insights/components','Application Insights',\r\ntype =~ 'microsoft.desktopvirtualization/applicationgroups', 'WVD Application Groups',\r\ntype =~ 'microsoft.desktopvirtualization/workspaces', 'WVD Workspaces',\r\ntype =~ 'microsoft.desktopvirtualization/hostpools', 'WVD Hostpools',\r\nstrcat(\"Not Translated: \", type))\r\n| extend Details = pack_all()\r\n| project id, subscriptionId, type, location, resourceGroup, Details\r\n\r\n\r\n",
+        "size": 0,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "visualization": "table",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": "Resource",
+                "linkIsContextBlade": false,
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "id",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "Details",
+              "formatter": 7,
+              "formatOptions": {
+                "linkTarget": "CellDetails",
+                "linkLabel": "🔍 View Details",
+                "linkIsContextBlade": true
+              }
+            },
+            {
+              "columnMatch": "tenantId",
+              "formatter": 5
+            }
+          ],
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "id"
+          }
+        },
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          },
+          "showBorder": true
+        }
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "tags"
+      },
+      "name": "query - Tagged Resources - Copy"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "Resources\r\n| where tags.Environment in~ ({Environment}) or '*' in~ ({Environment})\r\n| where tags.Application in~ ({Application}) or '*' in~ ({Application})\r\n| summarize count() by type",
+        "size": 0,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "tabs"
+      },
+      "name": "query - Tagged Resources Summary"
+    }
+  ],
+  "fallbackResourceIds": [
+    "Azure Monitor"
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}

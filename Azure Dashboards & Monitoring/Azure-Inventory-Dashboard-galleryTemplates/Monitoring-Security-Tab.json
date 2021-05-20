@@ -1,0 +1,1835 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "a36f0b3d-8826-4bec-95a9-70ec6cb77713",
+            "version": "KqlParameterItem/1.0",
+            "name": "Subscriptions",
+            "type": 6,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "value": [
+              "value::all"
+            ],
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::1",
+                "value::all"
+              ],
+              "includeAll": true
+            }
+          }
+        ],
+        "style": "pills",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "parameters - 8"
+    },
+    {
+      "type": 11,
+      "content": {
+        "version": "LinkItem/1.0",
+        "style": "tabs",
+        "links": [
+          {
+            "id": "8192cd42-be72-4d18-b234-9e9fef4418dd",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Monitoring & Security",
+            "subTarget": "monitor",
+            "style": "link"
+          }
+        ]
+      },
+      "name": "links - 6",
+      "styleSettings": {
+        "padding": "0 0 20px 0"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Monitor & Security  \r\n   \r\n   \r\n   \r\n### Workspaces Overview"
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "monitor"
+      },
+      "name": "text - Monitor & Security"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources \r\n| where type =~ 'microsoft.operationalinsights/workspaces'\r\nor type =~ 'microsoft.insights/components'\r\n| summarize count() by type\r\n| extend type = case(\r\ntype == 'microsoft.insights/components', \"Application Insights\",\r\ntype == 'microsoft.operationalinsights/workspaces', \"Log Analytics workspaces\",\r\nstrcat(type, type))",
+        "size": 4,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "visualization": "tiles",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "Solutions",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "AzureSecurityCenter",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureSecurityCenterFree",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureSentinel",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureMonitorVMs",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "ServiceDesk",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureAutomation",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "ChangeTracking",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "UpdateManagement",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "UpdateCompliance",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureMonitorContainers",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "KeyVaultAnalytics",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "SQLHealthCheck",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "sortBy": [],
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          },
+          "showBorder": true
+        }
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "monitor"
+      },
+      "name": "query - Monitoring Security Overview - Copy - Copy"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Azure Monitor Workbooks & Alerting Resources"
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "monitor"
+      },
+      "name": "text - Monitor & Security - Azure Monitor Alerts"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources\r\n| where type has 'microsoft.insights/'\r\n     or type has 'microsoft.alertsmanagement/smartdetectoralertrules'\r\n     or type has 'microsoft.portal/dashboards'\r\n| where type != 'microsoft.insights/components'\r\n| extend type = case(\r\n \ttype == 'microsoft.insights/workbooks', \"Workbooks\",\r\n\ttype == 'microsoft.insights/activitylogalerts', \"Activity Log Alerts\",\r\n\ttype == 'microsoft.insights/scheduledqueryrules', \"Log Search Alerts\",\r\n\ttype == 'microsoft.insights/actiongroups', \"Action Groups\",\r\n\ttype == 'microsoft.insights/metricalerts', \"Metric Alerts\",\r\n\ttype =~ 'microsoft.alertsmanagement/smartdetectoralertrules','Smart Detection Rules',\r\n    type =~ 'microsoft.insights/webtests', 'URL Web Tests',\r\n    type =~ 'microsoft.portal/dashboards', 'Portal Dashboards',\r\nstrcat(\"Not Translated: \", type))\r\n| summarize count() by type",
+        "size": 1,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "visualization": "tiles",
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "Solutions",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "AzureSecurityCenter",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureSecurityCenterFree",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureSentinel",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureMonitorVMs",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "ServiceDesk",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureAutomation",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "ChangeTracking",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "UpdateManagement",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "UpdateCompliance",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureMonitorContainers",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "KeyVaultAnalytics",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "SQLHealthCheck",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "sortBy": [],
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          },
+          "showBorder": true,
+          "sortCriteriaField": "count_",
+          "sortOrderField": 2
+        }
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "monitor"
+      },
+      "name": "query - Monitoring Security Overview - Copy"
+    },
+    {
+      "type": 11,
+      "content": {
+        "version": "LinkItem/1.0",
+        "style": "tabs",
+        "links": [
+          {
+            "id": "ed3b3650-dd46-4a66-9acd-cbda10b14c04",
+            "cellValue": "monitor",
+            "linkTarget": "parameter",
+            "linkLabel": "Active Alerts",
+            "subTarget": "alerts",
+            "preText": "Active Alerts",
+            "style": "link"
+          },
+          {
+            "id": "9224d88a-9c0d-49de-8b24-38b3f8c380d3",
+            "cellValue": "monitor",
+            "linkTarget": "parameter",
+            "linkLabel": "Workbooks & Alerting Resources",
+            "subTarget": "alertresources",
+            "preText": "Monitor Resources",
+            "style": "link"
+          },
+          {
+            "id": "b90eaf7d-647e-4b37-ae0a-6fc6a49ce07c",
+            "cellValue": "monitor",
+            "linkTarget": "parameter",
+            "linkLabel": "App Monitoring",
+            "subTarget": "apm",
+            "preText": "App Monitoring",
+            "style": "link"
+          },
+          {
+            "id": "1b181560-7b87-4f30-886c-2054a3648401",
+            "cellValue": "monitor",
+            "linkTarget": "parameter",
+            "linkLabel": "Log Analytics",
+            "subTarget": "loganalytics",
+            "preText": "Log Analytics",
+            "style": "link"
+          },
+          {
+            "id": "d19b8a04-9a79-40ca-90a6-7ebc1be7fe75",
+            "cellValue": "monitor",
+            "linkTarget": "parameter",
+            "linkLabel": "Security Score",
+            "subTarget": "security",
+            "preText": "Security Score",
+            "style": "link"
+          }
+        ]
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "monitor"
+      },
+      "name": "links - Monitor & Security - Tabs"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - Begin - Monitor & Security - Active Alerts"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow - Begin Active Alerts"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "AlertsManagementResources\r\n| extend AlertStatus = properties.essentials.monitorCondition\r\n| extend AlertState = properties.essentials.alertState\r\n| extend AlertTime = properties.essentials.startDateTime\r\n| extend AlertSuppressed = properties.essentials.actionStatus.isSuppressed\r\n| extend Severity = properties.essentials.severity\r\n| where AlertStatus == 'Fired'\r\n| extend Details = pack_all()\r\n| project id, name, subscriptionId, resourceGroup, AlertStatus, AlertState, AlertTime, AlertSuppressed, Severity, Details",
+        "size": 2,
+        "showExportToExcel": true,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": null,
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "id",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "name",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "Details",
+              "formatter": 7,
+              "formatOptions": {
+                "linkTarget": "CellDetails",
+                "linkLabel": "🔍 View Details",
+                "linkIsContextBlade": true
+              }
+            }
+          ],
+          "rowLimit": 1000,
+          "filter": true,
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "name"
+          }
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "monitor"
+        },
+        {
+          "parameterName": "monitor",
+          "comparison": "isEqualTo",
+          "value": "alerts"
+        }
+      ],
+      "name": "query - Monitor & Security - Active Alerts"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - End - Monitor & Security - Active Alerts"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow - End Active Alerts"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - Begin Monitor & Security - Alerting Resources"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow - Begin Alerting Resources"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources\r\n| where type has 'microsoft.insights/'\r\n     or type has 'microsoft.alertsmanagement/smartdetectoralertrules'\r\n    or type has 'microsoft.portal/dashboards'\r\n| where type != 'microsoft.insights/components'\r\n| extend type = case(\r\n \ttype == 'microsoft.insights/workbooks', \"Workbooks\",\r\n\ttype == 'microsoft.insights/activitylogalerts', \"Activity Log Alerts\",\r\n\ttype == 'microsoft.insights/scheduledqueryrules', \"Log Search Alerts\",\r\n\ttype == 'microsoft.insights/actiongroups', \"Action Groups\",\r\n\ttype == 'microsoft.insights/metricalerts', \"Metric Alerts\",\r\n\ttype =~ 'microsoft.alertsmanagement/smartdetectoralertrules','Smart Detection Rules',\r\n    type =~ 'microsoft.portal/dashboards', 'Portal Dashboards',\r\n\tstrcat(\"Not Translated: \", type))\r\n| extend Enabled = case(\r\n\ttype =~ 'Smart Detection Rules', properties.state,\r\n\ttype != 'Smart Detection Rules', properties.enabled,\r\n\tstrcat(\"Not Translated: \", type))\r\n| extend WorkbookType = iif(type =~ 'Workbooks', properties.category, ' ')\r\n| extend Details = pack_all()\r\n| project name, type, subscriptionId, location, resourceGroup, Enabled, WorkbookType, Details",
+        "size": 2,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": null,
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "name",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "Details",
+              "formatter": 7,
+              "formatOptions": {
+                "linkTarget": "CellDetails",
+                "linkLabel": "🔍 View Details",
+                "linkIsContextBlade": true
+              }
+            },
+            {
+              "columnMatch": "id",
+              "formatter": 5
+            }
+          ],
+          "filter": true,
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "name"
+          }
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "monitor"
+        },
+        {
+          "parameterName": "monitor",
+          "comparison": "isEqualTo",
+          "value": "alertresources"
+        }
+      ],
+      "name": "query - Monitor & Security - Alerting Resources"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - End - Monitor & Security - Alerting Resources"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow - End Alerting Resources"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - Begin - Monitor & Security - App Monitoring"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow - Begin App Monitoring"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "where type =~ 'microsoft.insights/components'\r\n| extend RetentionInDays = properties.RetentionInDays\r\n| extend IngestionMode = properties.IngestionMode\r\n| extend Details = pack_all()\r\n| project Resource=id, location, resourceGroup, subscriptionId, IngestionMode, RetentionInDays, Details",
+        "size": 2,
+        "exportedParameters": [
+          {
+            "fieldName": "Resource",
+            "parameterName": "appinsight",
+            "parameterType": 5
+          }
+        ],
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": "Resource",
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Resource",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "Details",
+              "formatter": 7,
+              "formatOptions": {
+                "linkTarget": "CellDetails",
+                "linkLabel": "🔍 View Details",
+                "linkIsContextBlade": true
+              }
+            },
+            {
+              "columnMatch": "id",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "name",
+              "formatter": 5
+            }
+          ],
+          "filter": true,
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "Resource"
+          }
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "monitor"
+        },
+        {
+          "parameterName": "monitor",
+          "comparison": "isEqualTo",
+          "value": "apm"
+        }
+      ],
+      "name": "query - Monitor & Security - App Monitoring"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - End - Monitor & Security - App Monitoring"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow - End App Monitoring"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - Begin - Monitor & Security - Log Analytics"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow - Begin - App Monitoring"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "where type =~ 'microsoft.operationalinsights/workspaces'\r\n| extend Sku = properties.sku.name\r\n| extend RetentionInDays = properties.retentionInDays\r\n| extend Details = pack_all()\r\n| project Workspace=id, resourceGroup, location, subscriptionId, Sku, RetentionInDays, Details",
+        "size": 0,
+        "exportedParameters": [
+          {
+            "fieldName": "workspace",
+            "parameterName": "workspace",
+            "parameterType": 5
+          }
+        ],
+        "showExportToExcel": true,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": "Resource",
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Workspace",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "Details",
+              "formatter": 7,
+              "formatOptions": {
+                "linkTarget": "CellDetails",
+                "linkLabel": "🔍 View Details",
+                "linkIsContextBlade": true
+              }
+            }
+          ],
+          "filter": true,
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "Workspace"
+          }
+        },
+        "sortBy": []
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "monitor"
+        },
+        {
+          "parameterName": "monitor",
+          "comparison": "isEqualTo",
+          "value": "loganalytics"
+        }
+      ],
+      "name": "query - Monitoring Security Overview - Copy"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Log Analytics workspaces with enabled Solutions\r\n\r\n💡 Select workspace to see data tables and resources logging to that workspace\r\n"
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "monitor"
+        },
+        {
+          "parameterName": "monitor",
+          "comparison": "isEqualTo",
+          "value": "loganalytics"
+        }
+      ],
+      "name": "text - Monitor & Security - workspace details"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resources\r\n| where type == \"microsoft.operationsmanagement/solutions\"\r\n| project Solution=plan.name, Workspace=tolower(tostring(properties.workspaceResourceId)), subscriptionId\r\n\t| join kind=leftouter(\r\n\t\tresources\r\n\t\t| where type =~ 'microsoft.operationalinsights/workspaces'\r\n\t\t| project Workspace=tolower(tostring(id)),subscriptionId) on Workspace\r\n| summarize Solutions = strcat_array(make_list(Solution), \",\") by Workspace, subscriptionId\r\n| extend AzureSecurityCenter = iif(Solutions has 'Security','Enabled','Not Enabled')\r\n| extend AzureSecurityCenterFree = iif(Solutions has 'SecurityCenterFree','Enabled','Not Enabled')\r\n| extend AzureSentinel = iif(Solutions has \"SecurityInsights\",'Enabled','Not Enabled')\r\n| extend AzureMonitorVMs = iif(Solutions has \"VMInsights\",'Enabled','Not Enabled')\r\n| extend ServiceDesk = iif(Solutions has \"ITSM Connector\",'Enabled','Not Enabled')\r\n| extend AzureAutomation = iif(Solutions has \"AzureAutomation\",'Enabled','Not Enabled')\r\n| extend ChangeTracking = iif(Solutions has 'ChangeTracking','Enabled','Not Enabled')\r\n| extend UpdateManagement = iif(Solutions has 'Updates','Enabled','Not Enabled')\r\n| extend UpdateCompliance = iif(Solutions has 'WaaSUpdateInsights','Enabled','Not Enabled')\r\n| extend AzureMonitorContainers = iif(Solutions has 'ContainerInsights','Enabled','Not Enabled')\r\n| extend KeyVaultAnalytics = iif(Solutions has 'KeyVaultAnalytics','Enabled','Not Enabled')\r\n| extend SQLHealthCheck = iif(Solutions has 'SQLAssessment','Enabled','Not Enabled')",
+        "size": 0,
+        "exportedParameters": [
+          {
+            "fieldName": "Workspace",
+            "parameterName": "workspace",
+            "parameterType": 5
+          }
+        ],
+        "showExportToExcel": true,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": "Resource",
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "Workspace",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "Solutions",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "AzureSecurityCenter",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureSecurityCenterFree",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureSentinel",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureMonitorVMs",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "ServiceDesk",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureAutomation",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "ChangeTracking",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "UpdateManagement",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "UpdateCompliance",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "AzureMonitorContainers",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "KeyVaultAnalytics",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            },
+            {
+              "columnMatch": "SQLHealthCheck",
+              "formatter": 18,
+              "formatOptions": {
+                "thresholdsOptions": "icons",
+                "thresholdsGrid": [
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Not Enabled",
+                    "representation": "disabled",
+                    "text": "{0}{1}"
+                  },
+                  {
+                    "operator": "Default",
+                    "thresholdValue": null,
+                    "representation": "Available",
+                    "text": "{0}{1}"
+                  }
+                ]
+              }
+            }
+          ],
+          "filter": true,
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "Workspace"
+          }
+        },
+        "sortBy": []
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "monitor"
+        },
+        {
+          "parameterName": "monitor",
+          "comparison": "isEqualTo",
+          "value": "loganalytics"
+        }
+      ],
+      "name": "query - Monitoring Security Overview"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "\r\n\r\n💡 Workspace table usage for selected workspace on the left, resources reported to selected workspace on the right."
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "monitor"
+        },
+        {
+          "parameterName": "monitor",
+          "comparison": "isEqualTo",
+          "value": "loganalytics"
+        }
+      ],
+      "name": "text - Monitor & Security - workspace table usage"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "Usage\r\n| summarize Size = sum(Quantity) by ['Table Name'] = DataType\r\n| sort by Size desc",
+        "size": 2,
+        "noDataMessageStyle": 5,
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "exportedParameters": [
+          {
+            "fieldName": "workspace",
+            "parameterName": "workspace",
+            "parameterType": 5
+          }
+        ],
+        "showExportToExcel": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "crossComponentResources": [
+          "{workspace}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "Size",
+              "formatter": 3,
+              "formatOptions": {
+                "palette": "orange",
+                "customColumnWidthSetting": "341px"
+              },
+              "numberFormat": {
+                "unit": 38,
+                "options": {
+                  "style": "decimal"
+                }
+              }
+            }
+          ],
+          "rowLimit": 500,
+          "filter": true
+        },
+        "sortBy": []
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "monitor"
+        },
+        {
+          "parameterName": "monitor",
+          "comparison": "isEqualTo",
+          "value": "loganalytics"
+        }
+      ],
+      "customWidth": "50",
+      "name": "query - Monitoring Security - Workspace Usage - Copy"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "search * | distinct _ResourceId, SubscriptionId",
+        "size": 2,
+        "noDataMessageStyle": 5,
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "exportedParameters": [
+          {
+            "fieldName": "workspace",
+            "parameterName": "workspace",
+            "parameterType": 5
+          }
+        ],
+        "showExportToExcel": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces",
+        "crossComponentResources": [
+          "{workspace}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": null,
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "_ResourceId",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "SubscriptionId",
+              "formatter": 5
+            }
+          ],
+          "rowLimit": 500,
+          "filter": true,
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "SubscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "_ResourceId"
+          }
+        },
+        "sortBy": []
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "monitor"
+        },
+        {
+          "parameterName": "monitor",
+          "comparison": "isEqualTo",
+          "value": "loganalytics"
+        }
+      ],
+      "customWidth": "50",
+      "name": "query - Monitoring Security - Workspace Usage"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - End - Monitor & Security - Log Analytics"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow - End - App Monitoring"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### NoShow - Begin - Monitor & Security - Security"
+      },
+      "conditionalVisibility": {
+        "parameterName": "noshow",
+        "comparison": "isEqualTo",
+        "value": "noshow"
+      },
+      "name": "text - NoShow - Begin - App Monitoring - Security"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Azure Security Center Secure Store by Subscription"
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "monitor"
+        },
+        {
+          "parameterName": "monitor",
+          "comparison": "isEqualTo",
+          "value": "security"
+        }
+      ],
+      "name": "text - Monitor & Security - Secure Score Text"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "securityresources\r\n| where type == \"microsoft.security/securescores\"\r\n| extend subscriptionSecureScore = round(100 * bin((todouble(properties.score.current))/ todouble(properties.score.max), 0.001))\r\n| where subscriptionSecureScore > 0\r\n| project subscriptionSecureScore, subscriptionId\r\n| order by subscriptionSecureScore asc",
+        "size": 0,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": null,
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "subscriptionSecureScore",
+              "formatter": 8,
+              "formatOptions": {
+                "min": 0,
+                "max": 100,
+                "palette": "redGreen"
+              },
+              "numberFormat": {
+                "unit": 1,
+                "options": {
+                  "style": "decimal",
+                  "useGrouping": false
+                }
+              }
+            }
+          ],
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "subscriptionSecureScore"
+          }
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "monitor"
+        },
+        {
+          "parameterName": "monitor",
+          "comparison": "isEqualTo",
+          "value": "security"
+        }
+      ],
+      "name": "query - Monitor & Security - Security Scores"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "### Azure Security Center Secure Controls Score by Controls\r\n\r\nlists all security controls, the amount of unhealthy resources, their current score and their max score"
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "monitor"
+        },
+        {
+          "parameterName": "monitor",
+          "comparison": "isEqualTo",
+          "value": "security"
+        }
+      ],
+      "name": "text - Monitor & Security - Secure Score Text - Copy"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SecurityResources \r\n| where type == 'microsoft.security/securescores/securescorecontrols' \r\n| extend SecureControl = properties.displayName, unhealthy = properties.unhealthyResourceCount, currentscore = properties.score.current, maxscore = properties.score.max, subscriptionId\r\n| project SecureControl , unhealthy, currentscore, maxscore, subscriptionId",
+        "size": 3,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": null,
+                "showIcon": true,
+                "customColumnWidthSetting": "45ch"
+              }
+            },
+            {
+              "columnMatch": "SecureControl",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "unhealthy",
+              "formatter": 8,
+              "formatOptions": {
+                "min": 0,
+                "palette": "greenRed"
+              }
+            },
+            {
+              "columnMatch": "currentscore",
+              "formatter": 8,
+              "formatOptions": {
+                "palette": "redGreen"
+              },
+              "numberFormat": {
+                "unit": 1,
+                "options": {
+                  "style": "decimal"
+                }
+              }
+            },
+            {
+              "columnMatch": "maxscore",
+              "formatter": 8,
+              "formatOptions": {
+                "palette": "blue"
+              }
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            },
+            {
+              "columnMatch": "subscriptionSecureScore",
+              "formatter": 8,
+              "formatOptions": {
+                "min": 0,
+                "max": 100,
+                "palette": "redGreen"
+              },
+              "numberFormat": {
+                "unit": 1,
+                "options": {
+                  "style": "decimal",
+                  "useGrouping": false
+                }
+              }
+            }
+          ],
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true,
+            "finalBy": "SecureControl"
+          }
+        }
+      },
+      "conditionalVisibilities": [
+        {
+          "parameterName": "selectedTab",
+          "comparison": "isEqualTo",
+          "value": "monitor"
+        },
+        {
+          "parameterName": "monitor",
+          "comparison": "isEqualTo",
+          "value": "security"
+        }
+      ],
+      "name": "query - Monitor & Security - Security Scores - Copy"
+    }
+  ],
+  "fallbackResourceIds": [
+    "Azure Monitor"
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}

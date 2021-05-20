@@ -1,0 +1,253 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 9,
+      "content": {
+        "version": "KqlParameterItem/1.0",
+        "parameters": [
+          {
+            "id": "a36f0b3d-8826-4bec-95a9-70ec6cb77713",
+            "version": "KqlParameterItem/1.0",
+            "name": "Subscriptions",
+            "type": 6,
+            "isRequired": true,
+            "multiSelect": true,
+            "quote": "'",
+            "delimiter": ",",
+            "value": [
+              "value::all"
+            ],
+            "typeSettings": {
+              "additionalResourceOptions": [
+                "value::1",
+                "value::all"
+              ],
+              "includeAll": true
+            }
+          }     
+        ],
+        "style": "pills",
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "parameters - 8"
+    },
+    {
+      "type": 11,
+      "content": {
+        "version": "LinkItem/1.0",
+        "style": "tabs",
+        "links": [
+          {
+            "id": "f321b3dd-4d96-4aa7-ac57-5ad8ce236a48",
+            "cellValue": "selectedTab",
+            "linkTarget": "parameter",
+            "linkLabel": "Overview",
+            "subTarget": "overview",
+            "style": "link"
+          }
+        ]
+      },
+      "name": "links - 6",
+      "styleSettings": {
+        "padding": "0 0 20px 0"
+      }
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "# Overview Azure Resources"
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "overview"
+      },
+      "name": "text - Title"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "Resources | summarize count(type)",
+        "size": 4,
+        "title": "Count of All Resources",
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "visualization": "tiles",
+        "sortBy": [],
+        "tileSettings": {
+          "titleContent": {
+            "formatter": 1,
+            "formatOptions": {
+              "showIcon": true
+            }
+          },
+          "leftContent": {
+            "columnMatch": "count_type",
+            "formatter": 12,
+            "formatOptions": {
+              "showIcon": true
+            }
+          },
+          "showBorder": true,
+          "sortOrderField": 2
+        }
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "overview"
+      },
+      "name": "query - Overview Count"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Subscriptions and Resource Groups"
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "overview"
+      },
+      "name": "text - Subscriptions text"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "resourcecontainers \r\n| where type has \"microsoft.resources/subscriptions/resourcegroups\"\r\n| summarize Count=count(type) by type, subscriptionId | extend type = replace(@\"microsoft.resources/subscriptions/resourcegroups\", @\"Resource Groups\", type)",
+        "size": 0,
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "gridSettings": {
+          "formatters": [
+            {
+              "columnMatch": "$gen_group",
+              "formatter": 13,
+              "formatOptions": {
+                "linkTarget": null,
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "type",
+              "formatter": 16,
+              "formatOptions": {
+                "showIcon": true
+              }
+            },
+            {
+              "columnMatch": "subscriptionId",
+              "formatter": 5
+            }
+          ],
+          "hierarchySettings": {
+            "treeType": 1,
+            "groupBy": [
+              "subscriptionId"
+            ],
+            "expandTopLevel": true
+          }
+        },
+        "tileSettings": {
+          "showBorder": false,
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "Count",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "maximumSignificantDigits": 3,
+                "maximumFractionDigits": 2
+              }
+            }
+          }
+        }
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "overview"
+      },
+      "name": "query - Subscription Overview"
+    },
+    {
+      "type": 1,
+      "content": {
+        "json": "## Resource Counts"
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "overview"
+      },
+      "name": "text - Overview Resource text"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "Resources \r\n| extend type = case(\r\ntype contains 'microsoft.netapp/netappaccounts', 'NetApp Accounts',\r\ntype contains \"microsoft.compute\", \"Azure Compute\",\r\ntype contains \"microsoft.logic\", \"LogicApps\",\r\ntype contains 'microsoft.keyvault/vaults', \"Key Vaults\",\r\ntype contains 'microsoft.storage/storageaccounts', \"Storage Accounts\",\r\ntype contains 'microsoft.compute/availabilitysets', 'Availability Sets',\r\ntype contains 'microsoft.operationalinsights/workspaces', 'Azure Monitor Resources',\r\ntype contains 'microsoft.operationsmanagement', 'Operations Management Resources',\r\ntype contains 'microsoft.insights', 'Azure Monitor Resources',\r\ntype contains 'microsoft.desktopvirtualization/applicationgroups', 'WVD Application Groups',\r\ntype contains 'microsoft.desktopvirtualization/workspaces', 'WVD Workspaces',\r\ntype contains 'microsoft.desktopvirtualization/hostpools', 'WVD Hostpools',\r\ntype contains 'microsoft.recoveryservices/vaults', 'Backup Vaults',\r\ntype contains 'microsoft.web', 'App Services',\r\ntype contains 'microsoft.managedidentity/userassignedidentities','Managed Identities',\r\ntype contains 'microsoft.storagesync/storagesyncservices', 'Azure File Sync',\r\ntype contains 'microsoft.hybridcompute/machines', 'ARC Machines',\r\ntype contains 'Microsoft.EventHub', 'Event Hub',\r\ntype contains 'Microsoft.EventGrid', 'Event Grid',\r\ntype contains 'Microsoft.Sql', 'SQL Resources',\r\ntype contains 'Microsoft.HDInsight/clusters', 'HDInsight Clusters',\r\ntype contains 'microsoft.devtestlab', 'DevTest Labs Resources',\r\ntype contains 'microsoft.containerinstance', 'Container Instances Resources',\r\ntype contains 'microsoft.portal/dashboards', 'Azure Dashboards',\r\ntype contains 'microsoft.containerregistry/registries', 'Container Registry',\r\ntype contains 'microsoft.automation', 'Automation Resources',\r\ntype contains 'sendgrid.email/accounts', 'SendGrid Accounts',\r\ntype contains 'microsoft.datafactory/factories', 'Data Factory',\r\ntype contains 'microsoft.databricks/workspaces', 'Databricks Workspaces',\r\ntype contains 'microsoft.machinelearningservices/workspaces', 'Machine Learnings Workspaces',\r\ntype contains 'microsoft.alertsmanagement/smartdetectoralertrules', 'Azure Monitor Resources',\r\ntype contains 'microsoft.apimanagement/service', 'API Management Services',\r\ntype contains 'microsoft.dbforpostgresql', 'PostgreSQL Resources',\r\ntype contains 'microsoft.scheduler/jobcollections', 'Scheduler Job Collections',\r\ntype contains 'microsoft.visualstudio/account', 'Azure DevOps Organization',\r\ntype contains 'microsoft.network/', 'Network Resources',\r\ntype contains 'microsoft.migrate/' or type contains 'microsoft.offazure', 'Azure Migrate Resources',\r\ntype contains 'microsoft.servicebus/namespaces', 'Service Bus Namespaces',\r\ntype contains 'microsoft.classic', 'ASM Obsolete Resources',\r\ntype contains 'microsoft.resources/templatespecs', 'Template Spec Resources',\r\ntype contains 'microsoft.virtualmachineimages', 'VM Image Templates',\r\ntype contains 'microsoft.documentdb', 'CosmosDB DB Resources',\r\ntype contains 'microsoft.alertsmanagement/actionrules', 'Azure Monitor Resources',\r\ntype contains 'microsoft.kubernetes/connectedclusters', 'ARC Kubernetes Clusters',\r\ntype contains 'microsoft.purview', 'Purview Resources',\r\ntype contains 'microsoft.security', 'Security Resources',\r\ntype contains 'microsoft.cdn', 'CDN Resources',\r\ntype contains 'microsoft.devices','IoT Resources',\r\ntype contains 'microsoft.datamigration', 'Data Migraiton Services',\r\ntype contains 'microsoft.cognitiveservices', 'Congitive Services',\r\ntype contains 'microsoft.customproviders', 'Custom Providers',\r\ntype contains 'microsoft.appconfiguration', 'App Services',\r\ntype contains 'microsoft.search', 'Search Services',\r\ntype contains 'microsoft.maps', 'Maps',\r\ntype contains 'microsoft.containerservice/managedclusters', 'AKS',\r\ntype contains 'microsoft.signalrservice', 'SignalR',\r\ntype contains 'microsoft.resourcegraph/queries', 'Resource Graph Queries',\r\ntype contains 'microsoft.batch', 'MS Batch',\r\ntype contains 'microsoft.analysisservices', 'Analysis Services',\r\ntype contains 'microsoft.synapse/workspaces', 'Synapse Workspaces',\r\ntype contains 'microsoft.synapse/workspaces/sqlpools', 'Synapse SQL Pools',\r\ntype contains 'microsoft.kusto/clusters', 'ADX Clusters',\r\ntype contains 'microsoft.resources/deploymentscripts', 'Deployment Scripts',\r\ntype contains 'microsoft.aad/domainservices', 'AD Domain Services',\r\ntype contains 'microsoft.labservices/labaccounts', 'Lab Accounts',\r\ntype contains 'microsoft.automanage/accounts', 'Automanage Accounts',\r\nstrcat(\"Not Translated: \", type))\r\n| summarize count() by type",
+        "size": 2,
+        "title": "Resource Count by Type",
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources",
+        "crossComponentResources": [
+          "{Subscriptions}"
+        ],
+        "visualization": "tiles",
+        "tileSettings": {
+          "titleContent": {
+            "columnMatch": "type",
+            "formatter": 1
+          },
+          "leftContent": {
+            "columnMatch": "count_",
+            "formatter": 12,
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "style": "decimal",
+                "useGrouping": false,
+                "maximumFractionDigits": 2,
+                "maximumSignificantDigits": 3
+              }
+            }
+          },
+          "showBorder": true,
+          "sortCriteriaField": "count_",
+          "sortOrderField": 2
+        }
+      },
+      "conditionalVisibility": {
+        "parameterName": "selectedTab",
+        "comparison": "isEqualTo",
+        "value": "overview"
+      },
+      "name": "query - Overview Resource Counts by type"
+    }
+  ],
+  "fallbackResourceIds": [
+    "Azure Monitor"
+  ],
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
