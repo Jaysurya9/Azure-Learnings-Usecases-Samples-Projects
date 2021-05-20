@@ -1,0 +1,37 @@
+#Delete - SIG Image Definition
+
+trigger:
+- none
+
+variables:
+- name: sig-name
+  value: 
+
+- name: resource-group
+  value: 
+
+- name: image-definition-name
+  value: 
+  
+- name: image-definition-version
+  value: 
+
+pool:
+  vmimage: 'vs2017-win2016'
+  
+steps:
+- task: AzurePowerShell@5
+  displayName: 'SIG IMG DEF Delete - Azure PowerShell: InlineScript'
+  inputs:
+      # Change azureSubscription to match Azure Resource Manager connection
+      azureSubscription: ''
+      ScriptType: 'InlineScript'
+      Inline: |
+        Remove-AzGalleryImageVersion `
+        -ResourceGroupName $(resource-group) `
+        -GalleryName $(sig-name) `
+        -GalleryImageDefinitionName $(image-definition-name) `
+        -Name $(image-definition-version) `
+        -Force
+      azurePowerShellVersion: 'LatestVersion'
+  enabled: true

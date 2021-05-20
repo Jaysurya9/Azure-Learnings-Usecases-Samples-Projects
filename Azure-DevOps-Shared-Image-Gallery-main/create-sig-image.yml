@@ -1,0 +1,37 @@
+#Azure Shared Image Gallery - Image Create
+
+trigger:
+- none
+
+variables: 
+- name: resource-group
+  value: 
+
+- name: location
+  value: 
+
+- name: sig-name
+  value: 
+
+- name: offer
+  value: win2018
+
+- name: publisher
+  value: 
+
+- name: description
+  value: 'Image Gallery for <application name>'
+   
+pool:
+  vmImage: 'vs2017-win2016'
+  
+steps:
+- task: AzurePowerShell@5
+  displayName: 'SIG Create - Azure PowerShell: InlineScript'
+  inputs:
+      # Change azureSubscription to match Azure Resource Manager connection
+      azureSubscription: ''
+      ScriptType: InlineScript
+      Inline: 'New-AzGallery -GalleryName $(sig-name) -ResourceGroupName $(resource-group) -Location $(location) -Description "$(description)"'
+      azurePowerShellVersion: LatestVersion
+  enabled: true

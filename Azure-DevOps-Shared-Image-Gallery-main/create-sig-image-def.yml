@@ -1,0 +1,53 @@
+#Azure SIG Image Defenition
+
+trigger:
+- none
+
+variables: 
+- name: resource-group
+  value: 
+
+- name: sig-name
+  value: 
+  
+- name: resource-group
+  value: 
+  
+- name: image-definition-name
+  value: 
+  
+- name: location
+  value: 
+  
+- name: publisher
+  value: 
+
+- name: sku
+  value: 
+
+- name: offer
+  value: win2018
+
+pool:
+      vmimage: 'vs2017-win2016' 
+      
+steps:
+- task: AzurePowerShell@4
+  displayName: 'SIG IMG DEF - Azure PowerShell: InlineScript'
+  inputs:
+      # Change azureSubscription to match Azure Resource Manager connection
+      azureSubscription: ''
+      ScriptType: InlineScript
+      Inline: $gallery = Get-AzGallery -Name $(sig-name) -ResourceGroupName $(resource-group) `
+              New-AzGalleryImageDefinition  `
+                -Galleryname $gallery.name `
+                -location $(location) `
+                -ResourceGroupName $gallery.ResourceGroupName `
+                -name $(image-definition-name) `
+                -OsState generalized `
+                -OsType Windows `
+                -publisher $(publisher) `
+                -sku $(sku) `
+                -offer $(offer)
+      azurePowerShellVersion: LatestVersion
+  enabled: true

@@ -1,0 +1,47 @@
+#Azure Storage Account Create 
+
+trigger:
+- none
+
+variables:
+- name: storage-account-name
+  value: 
+
+- name: storage-account-resource-group
+  value: 
+
+- name: storage-account-location
+  value: 
+
+- name: storage-account-sku
+  value: Standard_LRS
+
+- name: storage-account-kind
+  value: BlobStorage
+
+- name: storage-account-access-tier
+  value: Hot
+
+- name: storage-account-https
+  value: true
+  
+ pool:
+  vmImage: 'vs2017-win2016'
+  
+ steps:
+- task: AzureCLI@2
+  displayName: 'Create Blob Storage Account'
+  inputs:
+    # Change azureSubscription to match Azure Resource Manager connection
+    azureSubscription: ''
+    scriptType: 'pscore'
+    scriptLocation: inlineScript
+    inlineScript: |
+      az storage account create --name $(storage-account-name) `
+        --resource-group $(storage-account-resource-group) `
+        --location $(storage-account-location) `
+        --sku $(storage-account-sku) `
+        --kind $(storage-account-kind) `
+        --access-tier $(storage-account-access-tier) `
+        --https-only $(storage-account-https)
+  enabled: true

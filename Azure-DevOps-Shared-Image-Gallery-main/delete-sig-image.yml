@@ -1,0 +1,27 @@
+#Delete Azure SIG Image
+
+trigger:
+- none
+
+variables:
+- name: sig-name
+  value: 
+
+- name: resource-group
+  value: 
+
+pool:
+  vmimage: 'vs2017-win2016'
+  
+steps:
+- task: AzurePowerShell@5
+  displayName: 'SIG Delete - Azure PowerShell: InlineScript'
+  inputs:
+      # Change azureSubscription to match Azure Resource Manager connection
+      azureSubscription: ''
+      ScriptType: 'InlineScript'
+      Inline: Remove-AzGallery -ResourceGroupName $(resource-group) -Name $(sig-name) -Force
+      azurePowerShellVersion: 'LatestVersion'
+  enabled: true    
+
+

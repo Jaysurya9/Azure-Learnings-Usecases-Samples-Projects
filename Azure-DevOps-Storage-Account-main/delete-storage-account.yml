@@ -1,0 +1,26 @@
+#Azure Stoarge Account Delete
+
+trigger:
+- none
+
+variables: 
+- name: storage-account-name
+  value: 
+
+- name: storage-account-resource-group
+  value: 
+  
+pool:
+  vmImage: 'vs2017-win2016' 
+ 
+steps: 
+- task: AzureCLI@2
+  displayName: 'Delete - Storage Account'
+  inputs:
+    # Change azureSubscription to match Azure Resource Manager connection
+    azureSubscription: ''
+    scriptType: 'pscore'
+    scriptLocation: inlineScript
+    inlineScript: |
+      az storage account delete --name $(storage-account-name) --group $(storage-account-resource-group) --yes
+  enabled: true
