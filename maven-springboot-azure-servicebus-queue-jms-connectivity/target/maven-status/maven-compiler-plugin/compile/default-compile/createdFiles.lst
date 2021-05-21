@@ -1,0 +1,4 @@
+com\example\demo\User.class
+com\example\demo\SendController.class
+com\example\demo\QueueReceiveController.class
+com\example\demo\ServiceBusJmsStarterApplication.class
