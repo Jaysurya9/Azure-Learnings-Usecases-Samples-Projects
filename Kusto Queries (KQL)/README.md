@@ -4,16 +4,17 @@
 //Average CPU Utilization across all computers by TimeGenerated
 
     Perf 
-    | where ObjectName == "Processor" and CounterName == "% Processor Time" 
+    | where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
     | where TimeGenerated between(datetime(2021-04-01 00:00:00) .. datetime('2021-05-01 00:00:00'))
-    | summarize AVGCPU = avg(CounterValue) by Computer
+    | summarize AVGCPU = avg(CounterValue) by Computer, InstanceName, _ResourceId
     
    or
    
     Perf 
-    | where ObjectName == "Processor" and CounterName == "% Processor Time" 
+    | where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
     | where TimeGenerated > ago(30d) 
-    | summarize AVGCPU = avg(CounterValue) by Computer
+    | summarize AVGCPU = avg(CounterValue) by Computer, InstanceName, _ResourceId
+
 
 
 
@@ -22,8 +23,15 @@
     Perf 
     | where ObjectName == "Processor" and CounterName == "% Processor Time" 
     | where TimeGenerated between(datetime(2021-04-01 00:00:00) .. datetime('2021-05-01 00:00:00'))
-    | summarize MINCPU = min(CounterValue) by Computer
-
+    | summarize MINCPU = min(CounterValue) by Computer, InstanceName, _ResourceId
+    
+   or 
+    
+    Perf 
+    | where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
+    | where TimeGenerated > ago(30d) 
+    | summarize MINCPU = min(CounterValue) by Computer, InstanceName, _ResourceId
+    
 
 //Maximum CPU Utilization across all computers by TimeGenerated
 
@@ -31,7 +39,14 @@
     | where ObjectName == "Processor" and CounterName == "% Processor Time" 
     | where TimeGenerated between(datetime(2021-04-01 00:00:00) .. datetime('2021-05-01 00:00:00'))
     | summarize MAXCPU = min(CounterValue) by Computer
-
+   
+   or 
+    
+    Perf 
+    | where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
+    | where TimeGenerated > ago(30d) 
+    | summarize MAXCPU = min(CounterValue) by Computer, InstanceName, _ResourceId
+    
 
 //Min, Max, Avg CPU Utilization across all computers by TimeGenerated
 
@@ -39,6 +54,13 @@
     | where ObjectName == "Processor" and CounterName == "% Processor Time" 
     | where TimeGenerated between(datetime(2021-04-01 00:00:00) .. datetime('2021-05-01 00:00:00'))
     | summarize MINCPU = min(CounterValue), AVGCPU = avg(CounterValue), MAXCPU = min(CounterValue) by Computer
+    
+   or
+   
+    Perf 
+    | where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
+    | where TimeGenerated > ago(30d) 
+    | summarize MINCPU = min(CounterValue), AVGCPU = avg(CounterValue), MAXCPU = min(CounterValue) by Computer, InstanceName, _ResourceId
 
 
 //Virtual Machine free disk space per instance / all computers
