@@ -1,3 +1,60 @@
+Object Name	Counter Name
+Logical Disk	% Free Inodes
+Logical Disk	% Free Space
+Logical Disk	% Used Inodes
+Logical Disk	% Used Space
+Logical Disk	Disk Read Bytes/sec
+Logical Disk	Disk Reads/sec
+Logical Disk	Disk Transfers/sec
+Logical Disk	Disk Write Bytes/sec
+Logical Disk	Disk Writes/sec
+Logical Disk	Free Megabytes
+Logical Disk	Logical Disk Bytes/sec
+Memory	% Available Memory
+Memory	% Available Swap Space
+Memory	% Used Memory
+Memory	% Used Swap Space
+Memory	Available MBytes Memory
+Memory	Available MBytes Swap
+Memory	Page Reads/sec
+Memory	Page Writes/sec
+Memory	Pages/sec
+Memory	Used MBytes Swap Space
+Memory	Used Memory MBytes
+Network	Total Bytes Transmitted
+Network	Total Bytes Received
+Network	Total Bytes
+Network	Total Packets Transmitted
+Network	Total Packets Received
+Network	Total Rx Errors
+Network	Total Tx Errors
+Network	Total Collisions
+Physical Disk	Avg. Disk sec/Read
+Physical Disk	Avg. Disk sec/Transfer
+Physical Disk	Avg. Disk sec/Write
+Physical Disk	Physical Disk Bytes/sec
+Process	Pct Privileged Time
+Process	Pct User Time
+Process	Used Memory kBytes
+Process	Virtual Shared Memory
+Processor	% DPC Time
+Processor	% Idle Time
+Processor	% Interrupt Time
+Processor	% IO Wait Time
+Processor	% Nice Time
+Processor	% Privileged Time
+Processor	% Processor Time
+Processor	% User Time
+System	Free Physical Memory
+System	Free Space in Paging Files
+System	Free Virtual Memory
+System	Processes
+System	Size Stored In Paging Files
+System	Uptime
+System	Users
+
+
+
 //Average CPU Utilization across all computers by TimeGenerated
 
     Perf 
