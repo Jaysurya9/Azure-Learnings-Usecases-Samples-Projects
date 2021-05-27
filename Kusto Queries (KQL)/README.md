@@ -1,6 +1,5 @@
 <h1>Azure Virtual Machine Performance Reports</h1>
-
-
+<hr>
 <b>VM CPU and MEMORY Utilization - across all computers by OSType = "Windows/Linux"</b>
     
     Perf
@@ -30,7 +29,7 @@
         | project bin(TimeGenerated, 30d) , Computer, MEMORY=CounterValue 
     ) on TimeGenerated, Computer
     | summarize MIN_CPU=min(CPU), AVG_CPU=avg(CPU), MAX_CPU=max(CPU), MIN_MEMORY=min(MEMORY), AVG_MEMORY=avg(MEMORY), MAX_MEMORY=max(MEMORY) by Computer
-
+<hr>
 <b>VM CPU Utilization - MIN,AVG, MAX across all computers by OSType = "Windows"</b>
 
     Perf
@@ -38,7 +37,8 @@
     | where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
     | where Computer in ((Heartbeat | where OSType == "Windows" | distinct Computer))
     | summarize MINCPU = min(CounterValue), AVGCPU = avg(CounterValue), MAXCPU = max(CounterValue) by Computer, _ResourceId
-    
+
+<hr>
 <b>VM CPU Utilization - MIN,AVG, MAX across all computers by OSType = "Linux"</b>    
 
     Perf
