@@ -144,8 +144,12 @@
 
    or 
 
-    Perf
-    | where ObjectName == 'Memory' and CounterName == "% Used Memory"
-    | where TimeGenerated between(datetime(2021-04-01 00:00:00) .. datetime('2021-05-01 00:00:00'))
-    | summarize min(CounterValue), avg(CounterValue), max(CounterValue) by Computer
+    Perf 
+    | where ObjectName == "Memory"
+    | CounterName == "% Used Memory" or CounterName == "% Committed Bytes In Use"
+    | where TimeGenerated between(datetime(2021-05-01 00:00:00) .. datetime('2021-05-31 00:00:00'))
+    | summarize MINCPU = min(CounterValue), AVGCPU = avg(CounterValue), MAXCPU = min(CounterValue) by Computer, InstanceName
+    
+    
+    
 
