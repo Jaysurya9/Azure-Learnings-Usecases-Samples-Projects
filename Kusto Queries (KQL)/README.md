@@ -21,14 +21,15 @@
     Perf
     | where CounterName == "% Processor Time"  and InstanceName == "_Total"
     | where TimeGenerated > ago(30d)
-    | project bin(TimeGenerated, 30d), Computer, CPU=(CounterValue) 
+    | project bin(TimeGenerated, 30d), Computer, CPU=(CounterValue), _ResourceId, Type, SourceSystem
     | join (
        Perf
         | where CounterName == "% Used Memory" or CounterName == "% Committed Bytes In Use" 
         | where TimeGenerated > ago(30d)
-        | project bin(TimeGenerated, 30d) , Computer, MEMORY=CounterValue 
+        | project bin(TimeGenerated, 30d), Computer, MEMORY=CounterValue, _ResourceId, Type, SourceSystem
     ) on TimeGenerated, Computer
-    | summarize MIN_CPU=min(CPU), AVG_CPU=avg(CPU), MAX_CPU=max(CPU), MIN_MEMORY=min(MEMORY), AVG_MEMORY=avg(MEMORY), MAX_MEMORY=max(MEMORY) by Computer
+    | summarize MIN_CPU=min(CPU), AVG_CPU=avg(CPU), MAX_CPU=max(CPU), MIN_MEMORY=min(MEMORY), AVG_MEMORY=avg(MEMORY), MAX_MEMORY=max(MEMORY) 
+    by Computer, _ResourceId, Type = "Performance" , SourceSystem
     
 
 <b>VM CPU Utilization - MIN,AVG, MAX across all computers by OSType = "Windows"</b>
