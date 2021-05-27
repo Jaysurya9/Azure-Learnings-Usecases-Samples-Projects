@@ -1,4 +1,18 @@
-
+<b>VM CPU and MEMORY Utilization - across all computers by OSType = "Windows/Linux"</b>
+    
+    Perf
+    | where TimeGenerated > ago(30d)
+    | where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
+    | where Computer in ((Heartbeat | where OSType == "Linux" or OSType == "Windows" | distinct Computer))
+    | summarize MIN_CPU = min(CounterValue), AVG_CPU = avg(CounterValue), MAX_CPU = max(CounterValue) by Computer
+    | join 
+    ( 
+    Perf 
+    | where ObjectName == "Memory"
+    | where CounterName == "% Used Memory" or CounterName == "% Committed Bytes In Use"
+    | where TimeGenerated > ago(30d)
+    | summarize MIN_MEMORY = min(CounterValue), AVG_MEMOERY= avg(CounterValue), MAX_MEMORY = max(CounterValue) by Computer
+    ) on Computer
 
 <b>VM CPU Utilization - MIN,AVG, MAX across all computers by OSType = "Windows"</b>
 
