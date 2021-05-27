@@ -1,5 +1,29 @@
 
 
+<b>VM CPU Utilization - MIN,AVG, MAX across all computers by OSType = "Windows"</b>
+
+    Perf
+    | where TimeGenerated > ago(30d)
+    | where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
+    | where Computer in ((Heartbeat | where OSType == "Windows" | distinct Computer))
+    | summarize MINCPU = min(CounterValue), AVGCPU = avg(CounterValue), MAXCPU = max(CounterValue) by Computer, _ResourceId
+    
+<b>VM CPU Utilization - MIN,AVG, MAX across all computers by OSType = "Linux"</b>    
+
+    Perf
+    | where TimeGenerated > ago(30d)
+    | where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
+    | where Computer in ((Heartbeat | where OSType == "Linux" | distinct Computer))
+    | summarize MINCPU = min(CounterValue), AVGCPU = avg(CounterValue), MAXCPU = max(CounterValue) by Computer, _ResourceId
+    
+<b>VM CPU Utilization - MIN,AVG, MAX across all computers by OSType = "Windows/Linux"</b> 
+
+    Perf
+    | where TimeGenerated > ago(30d)
+    | where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
+    | where Computer in ((Heartbeat | where OSType == "Linux" or OSType == "Windows" | distinct Computer))
+    | summarize MINCPU = min(CounterValue), AVGCPU = avg(CounterValue), MAXCPU = max(CounterValue) by Computer, _ResourceId
+
 
 //Average CPU Utilization across all computers by TimeGenerated
 
