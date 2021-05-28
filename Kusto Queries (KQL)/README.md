@@ -218,7 +218,7 @@
         | where TimeGenerated > ago(30d)
         | project bin(TimeGenerated, 30d), Computer, MEMORY=CounterValue, _ResourceId, Type, SourceSystem
     ) on TimeGenerated, Computer
-    | join ( VMComputer | where AzureLocation != "" | summarize by Computer, AzureImageOffering, AzureLocation, AzureImageSku, OperatingSystemFamily, VirtualMachineNativeName, VirtualMachineType, DisplayName, HostName,  AzureResourceName, AzureSubscriptionId, AzureResourceGroup ) on Computer
+    | join ( VMComputer | where AzureLocation != "" | summarize by Computer, AzureImageOffering, AzureLocation, AzureImageSku, OperatingSystemFamily, VirtualMachineNativeName, VirtualMachineType, DisplayName, HostName,  AzureResourceName, AzureSubscriptionId, AzureResourceGroup, OperatingSystemFullName, Cpus ) on Computer
     | summarize MIN_CPU=min(CPU), AVG_CPU=avg(CPU), MAX_CPU=max(CPU), MIN_MEMORY=min(MEMORY), AVG_MEMORY=avg(MEMORY), MAX_MEMORY=max(MEMORY) 
-    by Computer, _ResourceId, Type = "Performance" , SourceSystem, AzureImageOffering, AzureLocation, AzureImageSku, OperatingSystemFamily, VirtualMachineNativeName, VirtualMachineType, DisplayName, HostName, AzureResourceName, AzureSubscriptionId, AzureResourceGroup
+    by Computer, _ResourceId, Type, SourceSystem, AzureImageOffering, AzureLocation, AzureImageSku, OperatingSystemFamily, VirtualMachineNativeName, VirtualMachineType, DisplayName, HostName, AzureResourceName, AzureSubscriptionId, AzureResourceGroup, OperatingSystemFullName, Cpus
     
