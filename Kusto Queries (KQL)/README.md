@@ -206,3 +206,19 @@
     | where TimeGenerated between(datetime(2021-05-01 00:00:00) .. datetime('2021-05-31 00:00:00'))
     | summarize MINCPU = min(CounterValue), AVGCPU = avg(CounterValue), MAXCPU = min(CounterValue) by Computer, InstanceName
     
+<b> VM CPU and Memory Perrformance by VM Details</b>    
+    
+    Perf
+    | where CounterName == "% Processor Time"  and InstanceName == "_Total"
+    | where TimeGenerated > ago(30d)
+    | project bin(TimeGenerated, 30d), Computer, CPU=(CounterValue), _ResourceId, Type, SourceSystem
+    | join (
+       Perf
+        | where CounterName == "% Used Memory" or CounterName == "% Committed Bytes In Use" 
+        | where TimeGenerated > ago(30d)
+        | project bin(TimeGenerated, 30d), Computer, MEMORY=CounterValue, _ResourceId, Type, SourceSystem
+    ) on TimeGenerated, Computer
+    | join ( VMComputer | where AzureLocation != "" | summarize by Computer, AzureImageOffering, AzureLocation, AzureImageSku, OperatingSystemFamily, VirtualMachineNativeName, VirtualMachineType, DisplayName, HostName,  AzureResourceName, AzureSubscriptionId, AzureResourceGroup ) on Computer
+    | summarize MIN_CPU=min(CPU), AVG_CPU=avg(CPU), MAX_CPU=max(CPU), MIN_MEMORY=min(MEMORY), AVG_MEMORY=avg(MEMORY), MAX_MEMORY=max(MEMORY) 
+    by Computer, _ResourceId, Type = "Performance" , SourceSystem, AzureImageOffering, AzureLocation, AzureImageSku, OperatingSystemFamily, VirtualMachineNativeName, VirtualMachineType, DisplayName, HostName, AzureResourceName, AzureSubscriptionId, AzureResourceGroup
+    
