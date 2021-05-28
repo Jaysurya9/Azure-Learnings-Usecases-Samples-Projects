@@ -57,6 +57,35 @@
     | where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
     | where Computer in ((Heartbeat | where OSType == "Linux" or OSType == "Windows" | distinct Computer))
     | summarize MINCPU = min(CounterValue), AVGCPU = avg(CounterValue), MAXCPU = max(CounterValue) by Computer, _ResourceId
+    
+
+<b> VM CPU and Memory Utilization, VM Available Memory across all Computers with VM Details</b>
+    
+    InsightsMetrics
+    | where Origin == "vm.azm.ms" 
+    | where Namespace == "Processor" and Name == "UtilizationPercentage" 
+    | summarize AVG_CPU=avg(Val), MIN_CPU=min(Val), MAX_CPU=max(Val) by bin(TimeGenerated, 30d), Computer
+    | join 
+    (
+    InsightsMetrics
+    | where Origin == "vm.azm.ms"
+    | where Namespace == "Memory" and Name == "AvailableMB"
+    | summarize Avg_AvailableMemory=avg(Val), Min_AvailableMemory=min(Val), Max_AvailableMemory=max(Val) by bin(TimeGenerated, 30d), Computer 
+    ) on Computer
+    | join 
+    (
+       Perf
+        | where CounterName == "% Used Memory" or CounterName == "% Committed Bytes In Use" 
+        | summarize AVG_MEM=avg(CounterValue), MIN_MEM=min(CounterValue), MAX_MEM=max(CounterValue) by bin(TimeGenerated, 30d), Computer
+    ) on Computer
+    | join
+    (
+    VMComputer 
+    | summarize by Computer, AzureImageOffering, AzureLocation, AzureImageSku, 
+    OperatingSystemFamily, VirtualMachineNativeName, VirtualMachineType, DisplayName, HostName,  AzureResourceName, AzureSubscriptionId, AzureResourceGroup, OperatingSystemFullName, Cpus, AzureSize, AzureImagePublisher, AzureImageVersion) on Computer
+    | project HostName, AzureResourceGroup, Computer, OperatingSystemFamily, OperatingSystemFullName, AzureSize, Cpus, MIN_CPU, AVG_CPU, MAX_CPU, 
+    MIN_MEM, AVG_MEM, MAX_MEM, 
+    Min_AvailableMemory, Avg_AvailableMemory, Max_AvailableMemory
 
 
 //Average CPU Utilization across all computers by TimeGenerated
