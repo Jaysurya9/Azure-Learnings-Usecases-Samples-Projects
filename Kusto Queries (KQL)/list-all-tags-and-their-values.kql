@@ -1,0 +1,19 @@
+// List all tags and their values - Azure Resource Graph
+// This query lists tags on management groups, subscriptions, and resources along with their values. The query first limits to resources where tags isnotempty(), limits the included fields by only including tags in the project, and mvexpand and extend to get the paired data from the property bag. It then uses union to combine the results from ResourceContainers to the same results from Resources, giving broad coverage to which tags are fetched. Last, it limits the results to distinct paired data and excludes system-hidden tags.
+
+ResourceContainers
+| where isnotempty(tags)
+| project tags
+| mvexpand tags
+| extend tagKey = tostring(bag_keys(tags)[0])
+| extend tagValue = tostring(tags[tagKey])
+| union (
+    resources
+    | where isnotempty(tags)
+    | project tags
+    | mvexpand tags
+    | extend tagKey = tostring(bag_keys(tags)[0])
+    | extend tagValue = tostring(tags[tagKey])
+)
+| distinct tagKey, tagValue
+| where tagKey !startswith "hidden-"
