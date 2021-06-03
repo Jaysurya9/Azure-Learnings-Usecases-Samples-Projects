@@ -1,0 +1,8 @@
+//KQL Query 
+//Count of Azure VMs by Subscription
+//Query Type: Heartbeat
+
+Heartbeat
+| where _SubscriptionId == "" //Add SubscriptionId here
+| distinct Computer
+| count
