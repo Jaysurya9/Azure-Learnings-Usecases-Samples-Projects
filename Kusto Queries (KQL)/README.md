@@ -1,4 +1,35 @@
-<h1>Azure Virtual Machine Performance Reports</h1>
+<h1>Azure Resource Graph Queries</h1>
+<h2>Find Orphaned Azure Resources</h2>
+
+<b>Orphaned Disks</b>
+
+    Resources
+    | where type has "microsoft.compute/disks"
+    | extend diskState = tostring(properties.diskState)
+    | where  diskState == 'Unattached' //or managedBy == ""
+    | where tags.Environment == "Production"
+    | project name, diskState, managedBy, subscriptionId, resourceGroup, location, tags
+    
+ <b>Orphaned NICs</b> 
+ 
+    Resources
+    | where type has "microsoft.network/networkinterfaces"
+    | where "{nicWithPrivateEndpoints}" !has id
+    | where properties !has 'virtualmachine'
+    | where tags.Environment == "Production"
+    | project name, resourceGroup, subscriptionId, location, tags
+    
+ <b>Orphaned NSGs</b>  
+ 
+    Resources
+    | where type =~ 'microsoft.network/networksecuritygroups' 
+    and isnull(properties.networkInterfaces) 
+    and isnull(properties.subnets)
+    | where tags.Environment == "Production"
+    | project name, resourceGroup, subscriptionId, location, tags
+    
+
+<h1>Azure Virtual Machine Performance Reports - Azure Monitor Logs || Log Analytics WorkSpace</h1>
 
 <b>VM CPU and MEMORY Utilization - across all computers by OSType = "Windows/Linux"</b>
 
