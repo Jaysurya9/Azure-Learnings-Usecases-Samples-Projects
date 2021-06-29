@@ -1,0 +1,15 @@
+//Orphaned Azure Resources
+//KQL Azure Resource Graph Query – to find Orphaned Disks
+
+Resources
+| where type has "microsoft.compute/disks"
+| extend diskState = tostring(properties.diskState)
+| where  diskState == 'Unattached' //or managedBy == ""
+| where subscriptionId == "" 
+or subscriptionId == ""
+or subscriptionId == ""
+or subscriptionId == ""
+or subscriptionId == ""
+| extend subscriptionId=case(subscriptionId =~ '','SubscriptionName1',subscriptionId =~ '','SubscriptionName2',subscriptionId =~ '','SubscriptionName3',subscriptionId =~ '','SubscriptionName4',subscriptionId =~ '','SubscriptionName1',subscriptionId =~ '','',subscriptionId)
+| where tags.Environment == "Production"
+| project name, diskState, managedBy, subscriptionId, resourceGroup, location, tags
