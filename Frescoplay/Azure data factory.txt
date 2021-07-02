@@ -1,0 +1,336 @@
+________ are used to represent data stores and compute resources that contains the connection strings.
+
+Pipeline
+
+Linked services(ans)
+
+Dataset
+
+Datastore
+
+
+_______ is a logical grouping of activities that perform a task.
+
+Linked service
+
+Dataset
+
+Pipeline(ans)
+
+Datastore
+
+
+On-premises data stores connect to Azure resources by provisioning ________ instance in Azure.
+
+SQL connection string
+
+Datafactory(ans)
+
+Data gateway
+
+Pipeline
+
+
+A pipeline is considered inactive if it is not associated with _______ and hasn’t been run over a week.
+
+Linked service
+
+Pipeline runs(ans)
+
+Pipeline
+
+Trigger
+
+
+
+ADF enables to create pipelines that ingest data from disparate data stores.
+
+False
+
+True(ans)
+
+
+_________ is a cloud integration service that is build for extract-load-transform (ETL), extract-transform-load (ELT), and data integration projects?
+
+Azure virtual machines
+
+Azure SQL database
+
+Azure Batch service
+
+Azure Data factory(ans)
+
+
+ADF pricing is based on the volume of data moved, and activity runs.
+
+False
+
+True(ans)
+
+
+Data movement in the data factory is enabled only in the Azure Data Factory provisioned region.
+
+False(ans)
+
+True
+
+
+--------------------------------------------------------------------------------------------------------
+
+Self-Hosted IR type is used for which kind of activities?
+
+Data movement and activity dispatch (ans)
+
+SSIS package execution
+
+Data monitor
+
+Data transform and enrich
+
+
+
+Which compute environment in Azure does Hive data transformation activities use?
+
+HDInsight Hadoop(ans)
+
+Azure data lake analytics
+
+Azure SQL
+
+Azure VM
+
+
+You can parameterize the linked service by selecting the Code icon on the Connections tab and using the JSON editor.
+
+True(ans)
+
+False
+
+
+What are the benefits of performing Lift and Shift SSIS?
+
+Increase scalability
+
+Increase high availability
+
+Reduce operational costs
+
+All of the options(ans)
+
+
+
+Custom activity runs your customized code logic on a _______ pool of virtual machines.
+
+Azure Batch(ans)
+
+Azure SQL database
+
+Azure VM
+
+Azure Data factory
+
+-----------------------------------------------------------------------------------------
+
+
+Azure Data factory is available in which section of the market place in Azure portal?
+
+Enterprise integration (ans)X
+
+Networking
+
+Compute
+
+Analytics
+
+
+
+How to define a pipeline to not run between its start and end time?
+
+isPaused: true(ans)
+
+is paused: false
+
+isPaused: false
+
+is paused: true
+
+
+
+What is the first step in the pipeline workflow?
+
+Monitor
+
+Publish
+
+Connect and collect(ans)
+
+Transform and enrich
+
+
+
+What are different types of integration runtime in ADF?
+
+Azure-SSIS
+
+Azure
+
+All the options(ans)
+
+Self hosted
+
+
+
+To specify a schedule to a dataset, in which section of its JSOfile, is the frequency and interval defined?
+
+type
+
+availability
+
+typeProperties
+
+scheduler(ans)
+
+
+What IR type should you install while copying data from on-premise to Azure?
+
+Self hosted(ans)
+
+None of the options
+
+Azure SSIS
+
+Azure
+
+
+Integration runtime provides a bridge between activity and linked service.
+
+False
+
+True(ans)
+
+
+
+What IR type should you install while copying data from Azure to Azure?
+
+Azure SSIS
+
+Azure
+
+None of the options
+
+Self hosted(ans)
+
+
+What are the different ADF management tools available to manage key components?
+
+REST API
+
+Azure portal
+
+.NET SDK
+
+Resource manager template
+
+All the options(ans)
+
+PowerShell
+
+
+
+What is the type defined for the Azure storage linked service?
+
+AzureStorage(ans)
+
+Azurestorage
+
+azure storage
+
+AzureStorageLinkedService
+
+
+
+
+_________ component of ADF identifies data within different data stores, such as tables, files, folders, and documents.
+
+Linked service
+
+Dataset(ans)
+
+Data store
+
+Pipeline
+
+
+
+For scheduling activity, in which of its JSON file, the frequency and interval are defined?
+
+Scheduler
+
+typeProperties
+
+type
+
+scheduler(ans)
+
+
+
+What is the third step in performing copy activity between data stores?
+
+Selecting source datastore and specifying its details(ans)
+
+Setting up properties
+
+Providing performance details
+
+Selecting destination datastore and specifying its details
+
+
+Azure IR type is capable of running copy activity between data stores in public and private network.
+
+True
+
+False(Ans)
+
+
+
+In which phase of the pipeline the refined data is loaded into Azure data warehouse and other stores?
+
+Connect and collect
+
+Monitor
+
+Publish(ans)
+
+Transform and enrich
+
+
+Without a data factory, it is possible to build custom components for data movement and transformation.
+
+True(ans)
+
+False
+
+
+
+In which section of the azure blob dataset JSON file, the file name is defined?
+
+linkedServiceName
+
+fileType
+
+typeProperties(ans)
+
+Properties
+
+
+__________ activity allows monitoring the scheduled activities for success and failure rates.
+
+Publish
+
+Transform and enrich
+
+Monitor(ans)
+
+Connect and collect
+
+

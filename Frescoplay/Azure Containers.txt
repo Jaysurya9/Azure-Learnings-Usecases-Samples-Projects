@@ -1,0 +1,364 @@
+ACR supports the geo-replication of images.
+
+True  (ans)
+
+False
+
+
+
+ACR stores and manages private docker container images.
+
+True (ans)
+
+False
+
+
+
+In ACI, an additional compute is provided for demanding workloads.
+
+False
+
+True (ans)
+
+
+
+
+With ACI, you can run complex assignments which are capable of reacting to events.
+
+True (ans)
+
+False
+
+
+
+ACS helps in deploying, managing, and orchestrating the containers.
+
+True (ans)
+
+False
+
+
+What is the full form of RBAC?
+
+Role-Based Access Control  (ans)
+
+Role-Build Admin Control
+
+Role-Build Access Control
+
+Role-Based Admin Control
+
+
+Which of the following language is supported by Azure Web Apps?
+
+Java
+
+Node.js
+
+All the options (ans)
+
+Python
+
+
+Azure Service Fabric is a _________ service-oriented architecture.
+
+Monolithic service
+
+Microservice  (ans)
+
+Both monolithic and micro
+
+None of the options
+
+
+In ACR, a single registry is replicated among multiple regions.
+
+True (ans)
+
+False
+
+
+Which among the following command is used to install Kubernetes environment in Azure?
+
+az aks install
+
+az ks install-cli
+
+az ks install
+
+az aks install-cli (ans)
+
+
+In Azure Service Fabric architecture, which of the following helps in a secure point-to-point communication channel?
+
+Federation subsystem
+
+Hosting subsystem
+
+Reliablity subsystem
+
+Transport subsystem  (ans)
+
+
+In Azure, batch tasks are executed on ________.
+
+Both assigned and computed nodes
+
+Computed node
+
+None of the options
+
+Assigned node   (ans)
+
+
+
+Which among the following command updates a replication in ACR?
+
+acr update repl update
+
+az acr update replication
+
+az acr replication update  (ans)
+
+az acr update repl
+
+
+Which among the following helps in running high-performance computing apps efficiently on the cloud?
+
+Azure Service Fabric
+
+Azure Container Instance
+
+Azure Batch   (ans)
+
+Azure container Registry
+
+
+
+In ACI, applications are secured by using _______.
+
+Super isolation
+
+Normal isolation
+
+All the options
+
+Hypervisor isolation (ans)
+
+
+
+Which among the following is the easiest way to run a container in Azure?
+
+ACI  (ans)
+
+AKS
+
+Azure Batch Service
+
+ACR
+
+
+
+Azure Service Fabric deals with infrastructure problems.
+
+False
+
+True
+
+
+
+Access to the Kubernetes clusters is given by __________.
+
+Azure Active Directory
+
+Both Azure active directory and user groups
+
+None of the options
+
+User groups
+
+
+
+Which parameters are used to create a container?
+
+-n,-g and -i
+
+None of the options
+
+-n and -g
+
+-n,-g and --image (ans)
+
+
+
+In ACI, applications are secured by using _______.
+
+Super isolation
+
+Normal isolation
+
+All the options
+
+Hypervisor isolation (ans)
+
+
+
+Azure batch automatically scales depending on the traffic.
+
+False
+
+True  (ans)
+
+
+
+DevOps flow can be optimized by using ____________________ pipeline.
+
+CD
+
+CI
+
+CI/CD (ans)
+
+
+
+Which of the following is not an Azure service provider for container requirements?
+
+ACI
+
+ACD (ans)
+
+ACR
+
+AKS
+
+
+
+Application performance is increased by routing the traffic to the nearest regions.
+
+False
+
+True
+
+
+Node is a service fabric _______ process.
+
+None of the options
+
+Overall
+
+Compile
+
+Runtime
+
+
+___________ is a managed docker registry based on open source docker registry 2.0.
+
+ACR (ans)
+
+Azure service fabric
+
+ACI
+
+ABR
+
+
+How many nodes can be maintained on a service fabric cluster?
+
+150
+
+100
+
+10 (ans)
+
+Thousands of nodes
+
+
+Which of the following helps in running repetitive jobs in containers?
+
+AKS
+
+Azure Batch Service (ans)
+
+ACR
+
+Azure Service Fabric
+
+
+
+
+
+Azure Service Fabric primarily aims at ________.
+
+Blockchains
+
+All of the options    (ans)
+
+Microservices
+
+Macroservices
+
+
+Currently, ACS is not available for _______ series of VMs.
+
+A
+
+D
+
+G 
+
+F
+
+B
+
+all of the above (ans)
+
+
+With ACI, you are provided with _________ kind of billing.
+
+Per hour
+
+Per minute
+
+Per second (ans)
+
+
+___________ helps in managing lifecycles on cluster node.
+
+Management subsystem  
+
+Testability subsystem
+
+Hosting subsystem
+
+Federation subsystem  (ans)
+
+
+
+
+
+In ACR, images are managed and verified by using ___________.
+
+Azure Secret
+
+Azure Instances
+
+Azure Active Directory
+
+Azure Directory
+
+
+
+There are so many application templates in Azure marketplace like ___________.
+
+None of the options
+
+Joomla and Drupal
+
+Joomla
+
+Drupal
+
+
+
+
+

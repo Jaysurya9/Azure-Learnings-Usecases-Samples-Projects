@@ -1,0 +1,333 @@
+Cloud services that are built and used by a single organization is known as _______.
+
+government cloud
+
+enterprise cloud (ans)
+
+hybrid Cloud
+
+public cloud 
+
+
+All Amazon services support region-based services.
+
+True
+
+False(ans)
+
+
+The committee that designs the standards and characteristics for cloud computing is ______________.
+
+NIFT
+
+NICT
+
+NIST(ans)
+
+NCCC
+
+
+I have some private servers on my premises, also I have distributed some of my workloads on the public cloud, what is this architecture called?
+
+Private Cloud
+
+Virtual Private Cloud
+
+Virtual Private Network
+
+Hybrid Cloud(ans)
+
+
+Cloud-computing providers offer their services as ______________.
+
+XaaS
+
+IaaS, Paas, Saas  (ans)
+
+SaaS
+
+IaaS
+
+EaaS
+
+PaaS
+
+
+
+Developers and organizations all around the world leverage ______ extensively.
+
+IaaS
+
+PaaS (ans)
+
+XaaS
+
+SaaS
+
+
+
+
+What are the uses of Amazon Glacier?
+
+auto scaling and Load Balancing
+
+fast computing
+
+store frequently access data
+
+access infrequent data and archive data(ans)
+
+
+Which AWS services will you use to collect and process e-commerce data for near real-time analysis?
+
+Both DynamoDB and Redshift(ans)
+
+None of the options
+
+Amazon Redshift
+
+Amazon DynamoDB
+
+
+What is an AMI?
+
+Amazon Machine Image(ans)
+
+Amazon Machine Integer
+
+Amazon Machine Index
+
+Amazon Material Image
+
+
+What is the maximum size of the S3 bucket?
+
+2 GB
+
+200 GB
+
+200 TB
+
+5 TB(ans)
+
+
+In S3, what does RRS stand for?
+
+Reduced Refined Storage
+
+Reduced Repeated Storage
+
+Repeated Redundancy Storage
+
+Reduced Redundancy Storage(ans)
+
+
+
+
+Charges for code commit are based on the active users.
+
+False
+
+True(ans)
+
+
+
+Which of the following service is used for fast and reliable application updates and bug fixes?
+
+code pipeline(ans)
+
+code build
+
+code commit
+
+code deploy
+
+
+
+Amazon CloudFormation is a ___________.
+
+Application service
+
+Content delivery service(ans)
+
+Deployment and management service
+
+Networking service
+
+
+
+
+Which service in AWS allows you to create and delete stacks of AWS resources which are defined in templates?
+
+CloudFront
+
+CloudFormation(ans)
+
+Redshift
+
+Route 53
+
+
+
+
+How can you restrict the access to the contents delivered in CloudFront?
+
+All the options mentioned 
+
+Origin access identity
+
+bucket policy
+
+IAM
+
+
+
+You are serving content from CloudFront. Which of the following happens to an end user's request?
+
+The user's requests are routed to the edge location in the country from which the request originates
+
+The user's request is routed to the nearest edge location(ans)
+
+For countries without edge location, requests are routed to the origin server
+
+The user's request is routed to the origin server
+
+
+
+Which of these services will help in better availability?
+
+load balancer and auto scaling (ans)
+
+SNS and SES
+
+Instance store and spot instances
+
+RDS and EBS
+
+
+
+Which of these services are used to distribute content to end users using a global network of edge locations?
+
+Route 53
+
+CloudWatch
+
+Virtual Private Cloud
+
+CloudFront(ans)
+
+
+Charges for code commit are based on the active users.
+
+False
+
+True(ans)
+
+
+
+Which of the following is not true about Elastic Load Balancing?
+
+automatically distributes traffic
+
+can be enabled only in a single availability zone(ans)
+
+detects unhealthy instances and reroutes
+
+achieves greater fault tolerance
+
+
+
+Which of the following services is free?
+
+code commit
+
+code deploy(ans)
+
+code build
+
+code pipeline
+
+
+Autoscaling is enabled through ____________.
+
+CloudWatch (ans)
+
+Virtual Private Cloud
+
+CloudFront
+
+Route 53
+
+
+
+How can you integrate IAM with data centers security?
+
+AWS VPN
+
+None of the options
+
+SAML(ans)
+
+AWS Direct Connect
+
+
+
+Which is a fully managed desktop computing service?
+
+Amazon ElastiCache
+
+Amazon Workspaces(ans)
+
+AWS Data Pipeline
+
+Amazon Direct Connect
+
+
+
+What does ARN stand for?
+
+Amazon Resource Network
+
+Amazon Resource Name(ans)
+
+Amazon Risk free Network
+
+Amazon Reserved Network
+
+
+
+You are using an S3 bucket through which you are running a photo sharing website. It is found that some of other sites owners also using your bucket URL and causing a loss to your business. How will you protect your buckets content from unauthorized usage?
+
+None of the options
+
+Deleting data after usage
+
+Firewall rules
+
+Utilize bucket polices, ACLs, and user policies(ans)
+
+
+
+
+Which of the following is not true about Amazon Glacier?
+
+Optimized for data for which retrieval times of several hours are suitable
+
+Services enables rapid disaster recovery(ans)
+
+Secure and durable storage for data archiving and backup
+
+Optimized for data that is infrequently accessed
+
+
+
+
+Service-oriented architecture advocates __________________.
+
+IaaS
+
+EaaS(ans)
+
+SaaS
+
+PaaS

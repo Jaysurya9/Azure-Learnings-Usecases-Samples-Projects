@@ -1,0 +1,111 @@
+You want to deploy an existing app to Microsoft Azure. The app requires a microservice architecture. What should you use to host the app?
+
+Service fabric
+App service --- ans --- wrong
+Virtual machine
+
+You are using the Azure Resource Health tool. Which status means that the service hasn't detected any events that affect the health of the resource?
+
+Ready
+Available --- ans
+Unavailable
+Running
+
+Which is a serverless compute service that runs code-on-demand?
+
+Functions --- ans
+Logic apps
+Web apps 
+API apps
+
+
+What is the foundational platform on which all Microsoft Azure App Service apps rely?
+
+Microsoft Azure Storage Queue
+Linux Virtual Machine
+Web Apps --- ans
+Windows Virtual Machine
+
+
+You are using the Azure Resource Health tool. Which status means that the service hasn't received any information about the resource for more than 15 min?
+
+Unavailable
+Available
+Safe
+Unknown --- ans
+
+
+You are interested in viewing data from event logs and error logs. Which of the following should you use?
+
+Diagnostics as a service --- ans
+Failure history
+Resource health
+Mitigation
+
+
+You are using the Azure Resource Health tool. Which status means that the service has a loss in performance of the resource, although it is available for usage?
+
+Running
+Degraded --- ans
+Unavailable
+Available
+
+
+Mobile apps can build offline-ready apps with data sync.
+
+True --- ans
+False
+
+
+Which of the following mobile apps can build offline-ready apps with data sync?
+
+Azure active directory
+Google
+All the options --- ans
+Facebook
+Twiiter
+
+
+API apps can integrate with the Logic Apps and Visual Studio.
+
+False
+True --- ans
+
+
+You need to implement an application in Microsoft Azure that will be used to support an IoT scenario. Clients will access the application using REST. Which type of app should you implement?
+
+Web
+API
+Logic --- ans --- wrong
+Mobile
+
+
+You plan to deploy 200 apps to Microsoft Azure. The apps require 25 gigabytes (GB) of disk space, 7,500 Logic App Actions per day, and 99.95 percent uptime. What is the minimum App Service plan you can use?
+
+Free
+Basic
+Standard --- ans
+Premium
+
+
+You plan to use Github as the deployment source for your app, which settings must you configure for the Github source.
+
+Authorization, project
+Authorization, branch, project --- ans
+Branch, performance test
+
+
+Which of the following statements are correct regarding deployment slots?
+
+Your app must be running on a standard or premium tier.
+All the options --- ans --- wrong
+Cannot swap the deployment slots while it is in the production slot
+Validating web app changes is not possible in staging slot before swapping it with the production slot.
+
+
+Which type of app saves time in building complex workflows using design tools?
+
+Web
+API
+Mobile
+Logic --- ans

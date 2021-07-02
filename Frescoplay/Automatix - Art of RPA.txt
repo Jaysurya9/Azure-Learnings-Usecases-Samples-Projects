@@ -1,0 +1,259 @@
+In the layered design _____________ is the top most layer.
+
+Components
+None of the options
+Object
+Process(ans)1
+Sub process
+===========================================================
+UiPath provides open platform for automation.
+
+True(ans)2
+False
+===========================================================
+
+_____________ is used to define the instructions for performing a business process.
+
+Process recorder
+Developer Tool(ans)3
+Robot Controller
+
+===========================================================
+
+_____________ is the master repository of jobs.
+
+Robot controller(ans)4
+Developer tools
+Process recorder
+Software robot
+
+===========================================================
+Robot controller is hosted on the desktop.
+
+False
+True(ans)5
+
+===========================================================
+_________ deploys jobs to the software robots.
+
+Developer tools
+Process recorder
+Robot controller(ans)6
+
+===========================================================
+Software robots are also known as ________.
+
+Clients or Agents(ans)7
+Agents
+None of the options.
+Clients
+===========================================================
+RPA stores the data as well as enables automation.
+
+True
+False(ans)8
+===========================================================
+Software robots are capable of interacting with a wide range of systems.
+
+False
+True(ans)9
+===========================================================
+________ is used to speed up the process definition by capturing the user actions.
+
+Action recorder
+Process recorder(ans)10
+Robot controller
+===========================================================
+____________ is hosted on a server.
+
+Robot controller(ans)11
+None of the options
+Developer tools
+Both of the options
+===========================================================
+Sequence of step by step instructions is known as a ___________.
+
+process
+None of the options
+Both of the options
+job(ans)12
+===========================================================
+BPM interacts through the _______________ layer.
+
+Data access(ans)13
+None of the options
+Both of the options
+Presentation
+===========================================================
+Locating objects relative to the edge of the screen is known as _________________.
+
+image matching
+pixel-based object location(ans)14
+Both of the options
+None of the options
+===========================================================
+User permissions are assigned by ______________.
+
+Process recorder
+None of the options
+Developer Tools
+Robot Controller(ans)15
+===========================================================
+Individual screen interactions are handled by _______ layer.
+
+Object
+Process
+Components(ans)16
+Sub process
+===========================================================
+______________ is used for visualizing complex processes.
+
+Layered design(ans)17
+All of the options
+None of the options
+Process recorder
+Robot Controller
+===========================================================
+In layered design functionality and logic is separated into different parts to enable reuse.
+
+True(ans)18
+False
+===========================================================
+
+
+=======================================================
+CRM systems can be streamlined using _____ tools.
+
+None of the options
+BPM(ans)19
+RPA and BPM
+RPA
+===========================================================
+A software robot is trained in a live environment.
+
+False
+True(ans)20
+===========================================================
+In assisted automation automated steps are triggered by users.
+
+True(ans)21
+False
+===========================================================
+RPA enables reduction of data entry errors.
+True(ans)22
+False
+===========================================================
+
+
+RPA interacts with multiple application at the ________ layer.
+object
+data
+None of the options
+presentation(ans)R
+===========================================================
+Which among these is not an RPA tool?
+
+None of the options
+Openspan
+Blackline(ans)
+Blue Prism
+EdgeVerve
+===========================================================
+Recorder function is an added advantage while selecting an RPA tool, because it assists with ________.
+
+enabling flow
+removing abstraction
+configuring cognitive RPA
+speeding up of the configuration(ans)R
+===========================================================
+______________ provides credentials in encrypted form to robots.
+
+Process Recorder
+Process Developers
+Robot Controller(ans)R
+===========================================================
+RPA can help to automate periodic reporting.
+
+True(ans)R
+False
+===========================================================
+If an organization chooses to implement RPA, it must ensure to change the programming logic in the applications involved.
+
+True(ans)
+False
+===========================================================
+RPA is similar to older technologies such as screen scrapping or macros.
+
+True
+False(ans)R
+===========================================================
+In ________ automation, user intervention is required only for scheduling and managing robot workload.
+
+cognitive(ans)
+intellisense
+autonomous
+assisted
+unassisted
+===========================================================
+
+Re-engineering the entire underlying process is part of ________________.
+
+Both of the options
+BPM(ans)
+RPA
+===========================================================
+All the RPA tools provide both front and back office automation.
+
+True
+False(ans)
+===========================================================
+RPA can help in improving the monitoring of network devices.
+
+False
+True(ans)
+===========================================================
+
+
+RPA is capable of __________________ to new situations.
+
+adapting
+responding
+learning and responding
+learning
+All of the options.(ans)
+===========================================================
+
+RPA is not suitable for processes that ________________.
+
+All of the options(ans)
+are consistent
+are repetitive and consistent(ans)
+requires constant human intervention
+are repetitive
+===========================================================
+Robots are trained by ______________.
+
+IT specialist(ans)
+end-user
+None of the options.
+===========================================================
+RPA acts as a physical robot when required.
+
+True
+Sometimes yes
+False(ans)
+===========================================================
+RPA will be able to handle operations such as __________.
+
+All of the options.(ans)
+writing emails
+claims processing
+document classification and claims processing
+document classification
+===========================================================
+
+
+===========================================================
+ 
+RPA (Robotic Process Automation) And Automation Anywhere Assessment Questions and Answers:
+ 

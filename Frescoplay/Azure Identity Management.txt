@@ -1,0 +1,200 @@
+﻿RBAC can be used _________________.
+
+For controlling application access permission
+None of the options
+Only for administration(ans)1R
+For controlling application access permission and administration
+=================================================================================================
+Azure AD provides __________________.
+
+Basic Authentication
+Federated Authentication
+All the options(ans)2R
+Synced Authentication
+=================================================================================================
+You plan to implement self-service group management in Microsoft Azure. Who is responsible for approving requests from users to join a group?
+
+A co-administrator
+A Domain Administrator
+A group Owner(Ans)3
+A service administrator
+=================================================================================================
+What are the three types of Role Basic Access (RBAC) controls in Microsoft Azure?
+
+Subscription
+Resource Group
+Resource
+All the options(ans)4R
+=================================================================================
+If my on-premises account is disabled, then how long can I access my cloud account?
+
+None of the options(ans)5
+300 minutes
+500 minutes
+100 minutes
+=================================================================================
+Managing Groups includes __________________.
+
+Assigning group owner
+All the options(ans)6R
+Creating Group
+Adding Users to the group
+=================================================================================
+What is the significant user benefit achieved by implementing SaaS application integration?
+
+Single sign-on to SaaS applications(ans)7R
+Anonymous access to SaaS applications
+Multi-account access to SaaS applications
+Multi-level access to SaaS applications
+=================================================================================
+Azure AD is not available in Azure Free Edition.
+
+False(ans)8R
+True
+=================================================================================
+A domain name is an important part of the identifier for ___________.
+
+User name or email address
+Address for a group
+App ID URI for an application
+All the options(ans)9R
+=================================================================================================
+The basic domain name is primarily intended to be used as a bootstrapping mechanism until a custom domain name is verified`.
+
+False
+True(Ans)10R
+=================================================================================================
+The basic domain of Azure AD is in the form of _______________.
+
+None of the options
+abc123.onmicrosoft.com(ans)11R
+abc123.domain.onmicrosoft.com
+abc123.azure.microsoft.com
+=================================================================================================
+If you create a user in Azure AD, It is called as __________________ Identity
+
+Domain
+Synchronized
+Federated
+Cloud(ans)12R
+=================================================================================================
+Azure AD provides _________________________________.
+
+All the options(ans)13R
+Secure mobile (remote) access to on-premises applications.
+Single Sign-On
+Anywhere and Any Device Access
+=================================================================================================
+Contoso.com is your verified custom domain, then the UPN of the user1 will be ________________.
+
+user1@contoso.azure.com
+user1@contoso.com(ans)14R
+user1@contoso.microsoft.com
+user1@contoso.onmicrosoft.com
+=================================================================================================
+You are the Global Administrator for your company’s Windows Azure tenant. You enable the self-service password reset feature. You create a new Azure Active Directory (Azure AD) account for a user and give the user the temporary password. Later from his home PC, the user attempts to log in to his O365 email but can’t find the temporary password. He clicks ”Can’t access your account” but is not prompted to reset his password. Other users successfully reset their passwords during this same timeframe. You need to explain to his manager why the user was not able to reset his password when other users were able to reset their passwords. What explanation should you give the user’s manager?
+
+Before a user can use this feature, he must first be added to the Password Administrators role in the subscription.
+
+Before a user can use this feature, he must first define an authentication method, such as a mobile number. This will be requested at the first successful login.(Ans)15R
+
+The corporate firewall blocks connection attempts to https://ssprsbprodncu-sb.accesscontrol.windows.net/
+
+To use this feature, the user must log in from a corporate-
+
+=================================================================================================
+Your company is using O365. The tenant administrator signs up for a free Azure membership and creates an Azure Active Directory (Azure AD) tenant. He then associates the Azure AD tenant with the Azure subscription. Multi-factor authentication (MFA) is not enabled. You wish to enable the self-service password reset feature for your cloud users. Which of the statements below is true regarding your tenant and the self-service password reset feature?
+
+You cannot enable this feature until you upgrade to a Premium Azure subscription.
+You cannot enable this feature until you upgrade to a Basic Azure subscription.
+The self-service password reset feature is available, as it is part of your paid O365 license .(ans)16
+You cannot enable this feature until you configure MFA.
+
+=================================================================================
+
+Your company uses Windows Azure and has published several applications. Your network team has informed you that there is much traffic coming from a specific subnet. You believe one of the most commonly used apps may be to blamed. You need to check which apps are being used the most, and where the traffic is originating. From which blade in the Azure portal should you start your search?
+
+Azure Active Directory
+Users and Groups
+Enterprise Applications(ans)17
+App Services
+=================================================================================
+To manage the Azure Ad, the required privilege is ____________________.
+
+Global administrator
+Service administrator
+Enterprise administrator
+AD administrator(ans)18R
+=================================================================================
+What types of accounts does password writeback work for?
+
+All the options
+Synced IDs(Ans)19R
+Domain IDs
+Cloud IDs
+=================================================================================================
+=================================================================================
+=================================================================================
+Not Sure Answers
+=================================================================================
+Your network contains an Active Directory Domain Services (AD DS) domain named contoso.com and an Azure Active Directory (Azure AD) domain named contoso.onmicrosoft.com. You are using Role-Based Access Control (RBAC) policies to control who has rights within the Azure subscription. You are a Global Administrator and have the “owner” built-in role. A member of your team named Mary should be allowed to create and manage all objects in the subscription, but should not be able to add or remove role assignments. You need to give Mary only the rights that she needs. This must be accomplished with the least amount of administrative effort. What should you do?
+
+Add Mary to the Owner role
+Create a custom RBAC role for Mary(ans)
+Add Mary to the Contributor role
+Add Mary to the Reader role
+
+=================================================================================================
+Your company has one Azure subscription. You create 5 Resource Groups within the subscription: RG1, RG2, RG3, RG4, and RG5. You want to give a partner named John the right to manage all of the resources within RG3 fully. John’s Live ID is john@outlook.com. John should not be able to manage the resources in any other resource group. What should you do?
+
+Log in to the Azure portal, browse to RG3 and add John’s Live ID as an Owner.
+Add John to your Azure Active Directory. Click the Subscription and Add John’s Azure login as an Owner.
+Log in to the Azure portal, click the Subscription and Add John’s Live ID as an Owner.
+Add John to your Azure Active Directory. Browse to RG3 and add John’s Azure login as an Owner.(ans)
+
+=================================================================================================
+
+You are the administrator of your company’s Azure subscription, and Azure Active Directory (Azure AD) tenant. Your company has an on-prem Active Directory. Your boss asks you to research, allowing the company users to access the Line-of-business (LOB) Software as a Service (SaaS) applications using Conditional Access rules. You need to make sure your tenant meets the pre-requisites for Conditional Access to SaaS apps. What is the lowest Azure subscription level required to enable Conditional Access to SaaS apps?
+
+Azure Free subscription
+Azure Premium subscription
+Paid O365 licenses
+Azure Basic subscription(ans)
+
+=================================================================================================
+
+You are deciding between using an on-prem Multi-factor Authentication (MFA) service, and a cloud-based service hosted in Azure. Which of the following features are available only in the on-prem MFA service?
+
+Trusted IPs
+Securing SaaS apps in the app gallery
+Fraud alerts
+Two-way SMS(ans)
+
+=================================================================================================
+
+
+What type of SaaS gallery applications support Microsoft Azure Active Directory automatic provisioning?
+
+Windows apps
+Published apps
+Featured apps
+Integrated apps(ans)Wrong
+=================================================================================
+
+What is a benefit of Role Basic Access Control (RBAC) in Microsoft Azure?
+
+group/role management
+broad permissions assignments
+granular management permissions assignment(ans)
+service/subscription management
+
+=================================================================================
+
+
+
+
+
+
+
+
+

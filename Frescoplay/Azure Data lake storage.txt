@@ -1,0 +1,403 @@
+Azure HDInsight clusters can be provisioned and configured to directly access data stored in Data Lake Storage Gen1
+
+False
+
+True (ans)
+
+
+______ is build on top of Azure Blob Storage
+
+Azure data lake store gen 1 
+
+Azure data lake store gen 2 (ans)
+
+None of the options mentioned
+
+
+How may copies of the data does ADLS maintain for high availability of data provisioning.
+
+4
+
+2
+
+1
+
+3(ans)
+
+
+
+ADLS manages what form of data
+
+Structured
+
+All of the options mentioned(ans)
+
+Semi-structured
+
+Unstructured
+
+
+___________ is a highly scalable, distributed and parallel system capable of storing diversified data from several diversified sources.
+
+Azure Data Factory
+
+Azure Databricks
+
+Azure Data Lake Store(ans)
+
+None of the options mentioned
+
+
+
+
+While creating ADLS Gen 1 using CLI which parameter ensures that the folder is to be created with the given name
+
+--directory
+
+--folder(ans)
+
+--file
+
+None of the options mentioned
+
+
+
+_____ driver is enabled with all Hadoop environments to access data stored in Data Lake Storage Gen2.
+
+Azure ML
+
+Azure Data Factory
+
+Azure data bricks
+
+Azure blob file system(ans)
+
+
+
+In ADLS Schema of the data is required to be defined before data is loaded
+
+True
+
+False(ans)
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+Account management / Authorization in microsoft Azure is implemented by RBAC which is also a built in feature.
+
+True (ans)
+
+False
+
+
+
+ADLS Gen1 provides which command line tool to copy data ?
+
+Azure Data Factory
+
+All of the options menioned
+
+AdlCopy (ans)
+
+Azure copy
+
+
+______ function writes the custom queries to bring the desired data-sets for the queries
+
+Database
+
+Table value function (ans)
+
+Procedures
+
+Views
+
+
+
+You can enable access to only trusted clients by specifying an IP address or defining a range of IP addresses by setting up the firewall rules to cut down access to your data lake analytics at network level.
+
+False
+
+True(ans)
+
+
+______ is not a build in Extractor in U-SQL
+
+Extractors.Csv
+
+Extractors.Text
+
+Extractors.Xlsv(ans)
+
+Extractors.Tsv
+
+
+ADLS Gen1 provides a command line tool, AdlCopy, to copy data from Azure Blob to ADLS and vice-versa
+
+False(ans)
+
+True
+
+
+______ language is used to create a script that runs the job which query the data to generate output for analysis.
+
+SQL
+
+C#
+
+P-SQL
+
+U-SQL(ans)
+
+
+
+
+_______is an analytics job service that writes queries and extracts valuable insights from any scale of data
+
+None of the options mentioned
+
+Azure data lake analytics(ans)
+
+Azure SQL database
+
+Azure data lake store
+
+
+------------------------------------------------------------------------------
+
+
+_______ instance is required to be created for log analytic visualizations that provide various analytical outcomes in a single dashboard?
+
+Azure data lake analytics
+
+Azure data lake store
+
+Log analytics workspace (ans)
+
+Azure Data Factory
+
+
+
+Which of the following is not an operation performed by data lake store gen 1?
+
+Store
+
+Scripting queries(ans)
+
+Analyze
+
+Ingest
+
+Prepare
+
+
+
+ADLS account contains containers, which in turn has data in the form of blobs
+
+True
+
+False(ans)
+
+
+
+
+______ is not a build in Extractor in U-SQL
+
+Extractors.Csv
+
+Extractors.Xlsv(ans)
+
+Extractors.Text
+
+Extractors.Tsv
+
+
+
+
+What is the cost per GB that azure incurs in order to store first 100 TB of data in your data lake storage gen 1 account?
+
+2.58 INR(ans)
+
+2.45 INR
+
+2.52 INR
+
+3.00 INR
+
+
+_______ component is used to build various data analytic jobs services and execute them parallelly.
+
+Diversified storage
+
+HDInsight
+
+Analytics service (ans)
+
+All of the options menioned
+
+
+
+Azure data lake architecture include which of the below components?
+
+Diversified storage
+
+All of the options menioned(ans)
+
+HDInsight
+
+Analytics service
+
+
+
+Data Operations - Authentication in ADLS is based on
+
+Account access keys
+
+Shared access key
+
+All of the options menioned
+
+Azure active directory(ans)
+
+
+_________ helps in creating service alerts and control the cost of Azure data lake implementation.
+
+Security mechanism
+
+Azure data lake analytics
+
+Log analytics(ans)
+
+None of the options mentioned
+
+
+You can use AdlCopy to copy data from ADLS gen 1 to blob and from blob to ADLS gen 1
+
+True
+
+False(ans)
+
+
+For Data protection, ADLS Gen 1 uses _____ protocol to secure data over the network.
+
+SSL 1.0
+
+TLS 1.1
+
+TLS 1.2(ans)
+
+SSL 2.0
+
+
+
+_______ is the built-in outputter in U-SQL that provides outputting a rowset into tab separator value file
+
+Outputters.Text
+
+Outputters.Csv
+
+Outputters.Tsv(ans)
+
+None of the options mentioned
+
+
+
+What are the permissions required to append a file that is located in a folder
+
+Not required any permission
+
+Read and Execute
+
+Write and Execute(ans)
+
+Read and Write
+
+
+_______ object is used to encapsulate the code that performs certain tasks regularly?
+
+Table value function
+
+Table
+
+View
+
+Procedures
+
+
+
+
+What is the file size limit imposed to be stored in ADLS ?
+
+No limit(ans)
+
+100TB
+
+500TB
+
+50GB
+
+
+
+Key Capabilities of data lake store gen 2 include which of the following?
+
+Hadoop Compatiblity access
+
+A superset of POSIX permissions
+
+Cost effective
+
+All of the options mentioned(ans)
+
+
+
+
+What is the account type that needs to be selected while creating an azure data lake storage gen 2 instance?
+
+Storage gen 2
+
+StorageV2(ans)
+
+General Account
+
+StorageV1
+
+
+
+Which of the following are data sources for azure data lake store?
+
+Log files
+
+All of the options mentioned(ans)
+
+Raw unstructured data
+
+Azure website
+
+Videos
+
+
+
+Azure data lake store gen 2 uses which component to organize data files into a hierarchy of directories for efficient data access?
+
+Diversified storage
+
+None of the options mentioned
+
+Hadoop compatible access
+
+Hierarcial namespace(ans)
+
+
+
+
+_________ is used for managing clusters after ingesting large volume of data clusters by extending various open sources such as hadoop, spark, pig, hive etc...
+
+HDInsight(ans)
+
+Diversified storage
+
+All of the options menioned
+
+Analytics service
