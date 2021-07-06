@@ -11,3 +11,6 @@ Creating a Staging Deployment Slot <br>
 Deploying a Web App Using Deployment Slots <br>
 Monitoring Azure Web Apps <br>
 Monitoring Application Performance With Application Insights <br>
+
+Connect ServiceNow with Azure IT Service Management Connector<br>
+https://docs.microsoft.com/en-us/azure/azure-monitor/alerts/itsmc-connections-servicenow
