@@ -1,5 +1,6 @@
 # Azure Automation Windows and Linux Update Summary
 
+<img src="Azure Automation Images/Azure Automation Windows and Linux Update Summary.png" alt="Azure Automation Images/Azure Automation Windows and Linux Update Summary.png" >
 
 <h2>Azure Automation Windows Update Summary for All Subscriptions</h2>
 
