@@ -2,7 +2,7 @@
 
 <h2> Report of Backup center | Backup instances </h2>
 
-Information of Azure Backup Instances
+Report of Azure Backup Instances
 
 <h5>Azure Resource Graph Query for Azure Backup Instances</h5>
 <h6>KQL Query</h6>
@@ -24,7 +24,7 @@ Information of Azure Backup Instances
 
 <h2> Report of Backup center | Vaults </h2>
 
-Information of Recovery Services vaults and Backup
+Report of Recovery Services vaults and Backup
 
 <h5>Azure Resource Graph Query for Recovery Services vaults and Backup</h5>
 <h6>KQL Query</h6>
@@ -36,7 +36,7 @@ Information of Recovery Services vaults and Backup
     
 <h2> Report of Backup center | Backup policies</h2>
 
-Information of Azure Backup policies
+Report of Azure Backup policies
 
 <h5>Azure Resource Graph Query for Azure Backup policies</h5>
 <h6>KQL Query</h6>    
