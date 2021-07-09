@@ -17,15 +17,15 @@ Step 4: Create a Logic App
 
 Provide Basic Details
 
-Subscription*: 
-	Resource Group*: 
-Instance Details:
-Logic App Name*:
-Region*:
+Subscription*: <br>
+	Resource Group*: <br>
+Instance Details: <br>
+Logic App Name*: <br>
+Region*: <br>
 
-(Optional)
-Enable log analytics: Select Check Button
-Log Analytics Workspace*: Select a Workspace to Monitor Logic App / else creata if not exits!
+(Optional) <br>
+Enable log analytics: Select Check Button <br>
+Log Analytics Workspace*: Select a Workspace to Monitor Logic App / else creata if not exits!<br>
 
 Click on <b>Review and Create</b>
 
@@ -33,7 +33,7 @@ Click on <b>Review and Create</b>
 
 Step 5: Click on <b>Download Template for Automation</b>
 
-<img src="Images/Logic App - Download Template for Automation.png" alt="Logic App - Download Template for Automation">
+<img src="Images/Logic App - Download Template for Automation.jpg" alt="Logic App - Download Template for Automation">
 
 Step 6: Preview of Logic App Template
 
