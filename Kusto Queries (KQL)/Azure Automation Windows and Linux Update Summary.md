@@ -2,7 +2,7 @@
 
 <img src="Azure Automation Images/Azure Automation Windows and Linux Update Summary.png" alt="Azure Automation Images/Azure Automation Windows and Linux Update Summary.png" >
 
-<h2>Azure Automation Windows Update Summary for All Subscriptions</h2>
+<h2>Azure Automation Windows Update Summary for All Subscriptions by Classification Count</h2>
 
 <h4>KQL - Log Analytics - Log Query</h4>
 
@@ -13,9 +13,26 @@
     | summarize arg_max(TimeGenerated, Solutions) by SourceComputerId
     | where Solutions has "updates" | distinct SourceComputerId))
     | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
-    | where UpdateState=~"Needed" and Approved!=false
+    //| where UpdateState=~"Needed" and Approved!=false
+    | summarize UpdatesNeeded=count(Classification) by Classification
+    
+<h2>Azure Automation Windows Update Summary for All Subscriptions by Classification of Critical Updates and Security Updates</h2>
+
+<h4>KQL - Log Analytics - Log Query</h4>
+    
+    Update
+    | where TimeGenerated>ago(24h) and OSType!="Linux" and (Classification has "Critical" or Classification has "Security") 
+    and SourceComputerId in ((Heartbeat
+    | where TimeGenerated>ago(24h) and OSType=~"Windows" and notempty(Computer)
+    | summarize arg_max(TimeGenerated, Solutions) by SourceComputerId
+    | where Solutions has "updates" | distinct SourceComputerId))
+    | summarize hint.strategy=partitioned arg_max(TimeGenerated, *) by Computer, SourceComputerId, UpdateID
+    //| where UpdateState=~"Needed" and Approved!=false
     | summarize UpdatesNeeded=count(Classification) by Classification
 
+
+<h4>KQL - Log Analytics - Log Query</h4>    
+    
 <h2>Azure Automation Linux Update Summary for All Subscriptions</h2>
 
 <h4>KQL - Log Analytics - Log Query</h4>
